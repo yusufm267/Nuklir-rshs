@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Kelola Nuklir</title>
 
-  <link rel="shortcut" href="<?=base_url()?>assets/img/logo-site2.png" type="image/png">
+  <link rel="shortcut icon" href="<?=base_url()?>assets/img/logo-site2.png" type="image/png">
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -19,17 +19,18 @@
 <div class="login-box">
 		<div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="../../index2.html" class="h1"><b>Nuklir </b>RSHS</a>
+      <!-- <a href="#" class="h3"><b>Nuklir</b>RSHS</a><br> -->
+      <img src="<?=base_url()?>assets/img/logo-site2.png" type="image/png" width="150" height="100">
     </div>
     <div class="card-body">
       <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
 
-      <form action="../../index3.html" method="post">
+      <form action="<?=base_url('/login/login')?>" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="nip" class="form-control" placeholder="NIP">
           <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+              <span class="fas fa-user"></span>
             </div>
           </div>
         </div>
