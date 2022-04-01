@@ -12,13 +12,13 @@ class M_login extends CI_Model
 		$this->db=$this->load->database('default',true);
 	}
 
-	public function cek_user($nip,$password)
+	public function cek_user($nip)
 	{
 
-		$kondisi = array(
-			'nip' => $nip,
-			'password' => md5($password)
-		);
+		// $kondisi = array(
+		// 	'nip' => $nip,
+		// 	'password' => md5($password)
+		// );
 
 		// $this->db->select('*');
 		// $this->db->from('USER_LOGIN_NUKLIR');
@@ -26,11 +26,29 @@ class M_login extends CI_Model
 		// $this->db->limit(1);
 		// return $this->db->get()->row();
 
-		return $this->db->query($query)->row();
-	}
+		// return $this->db->query($query)->row();
 
-	public function login($user,$password=null)
-	{
+		$query = $this->db->query("SELECT * FROM USER_LOGIN_NUKLIR WHERE nip = '$nip' ");
+
+		if ($query->num_rows()==1) {
+			return $query->result();
+		} else {
+			return FALSE;
+		}
 		
 	}
+
+	public function cek_login($nip,$password)
+	{
+
+		$query = $this->db->query("SELECT * FROM USER_LOGIN_NUKLIR WHERE nip = '$nip' and password = '$password' ");
+
+		if ($query->num_rows()==1) {
+			return $query->result();
+		} else {
+			return FALSE;
+		}
+		
+	}
+
 }

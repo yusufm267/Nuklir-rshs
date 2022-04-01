@@ -95,10 +95,6 @@
 <!-- <script src="<?=base_url()?>assets/vendor/adminlte/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <!-- <script src="<?=base_url()?>assets/vendor/adminlte/dist/js/pages/dashboard.js"></script> -->
-<!-- jQuery -->
-<!-- <script src="../../plugins/jquery/jquery.min.js"></script> -->
-<!-- Bootstrap 4 -->
-<!-- <script src="../../plugins/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 <!-- DataTables -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
@@ -108,12 +104,17 @@
 <!-- https://code.jquery.com/jquery-3.5.1.js
 https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.flash.min.js"></script>
 <!-- https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js
 https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js
 https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js -->
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/jszip/jszip.min.js"></script>
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
+<script src=".<?=base_url()?>assets/vendor/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
 
 <!-- Select2 -->
