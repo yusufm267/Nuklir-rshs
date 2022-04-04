@@ -52,7 +52,7 @@
               </li>
             </ul>
           </li>
-
+          <?php if ($this->session->userdata('akses')=="1") { ?>
           <!--Sidebar Menu User -->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -77,6 +77,7 @@
               </li>
             </ul>
           </li>
+        <?php } ?>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
