@@ -31,6 +31,11 @@
 					";
 			return $this->db->query($query)->row();
 		}
+
+		public function get_data_users()
+		{
+			return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
+		}
 	}
 
 	

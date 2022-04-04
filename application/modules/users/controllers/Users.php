@@ -35,6 +35,9 @@ class Users extends MX_Controller {
 		$data['body']='v_update';
 
 		$data['data_users_nuklir'] = $this->M_users->get_data_update($NIP);
+		$data['users_nuklir'] = $this->M_users->get_data_users();
+		// var_dump($data['users_nuklir']);
+		// exit;
 		$this->load->view('template',$data);
 	}
 

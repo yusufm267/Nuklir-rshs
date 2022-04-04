@@ -32,7 +32,13 @@
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">AKSES</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKSES; ?>" placeholder="Example : Z1">
+                <!-- <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKSES; ?>" placeholder="Example : Z1"> -->
+                <select class="form-control select" id="exampleInputEmail1" name="AKSES">
+                    <option value="">-- SELECT AKSES --</option>
+                    <?php foreach ($users_nuklir as $data) { ?>
+                    <option value="<?php echo $data->AKSES; ?>"><?php echo $data->AKSES; ?></option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">AKTIF</label>

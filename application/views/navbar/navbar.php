@@ -30,7 +30,7 @@
             <span class="float-right text-muted text-sm">2 days</span>
           </a>
           <div class="dropdown-divider"></div>
-          <a href="<?=base_url('login/logout') ?>" class="dropdown-item dropdown-footer">Logout</a>
+          <a href="<?=base_url('login/logout') ?>" class="dropdown-item dropdown-footer">Logout <i class="fas fa-arrow-circle-right"></i></a>
         </div>
       </li>
     </ul>
