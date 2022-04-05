@@ -43,26 +43,45 @@ class Login extends MX_Controller
 					$this->session->set_userdata('akses',$value->AKSES);
 
 
-					if ($this->session->userdata('akses')=="1" OR $this->session->userdata('akses')=="2" ) {
+					if ($this->session->userdata('akses')=="1" OR
+					 	$this->session->userdata('akses')=="2" OR
+					 	$this->session->userdata('akses')=="3" 
+					 	 ) {
 				
 						redirect('dashboard','refresh');
 					}else{
-						echo "<script>alert('Maaf anda tidak memiliki hak akses. ');";
-				
+						// echo "<script>alert('Maaf anda tidak memiliki hak akses. ');";
+						echo "<script language='javascript'>";
+						echo "alert('Maaf anda tidak memiliki hak akses')";
+						echo "</script>";
+
 						redirect('login','refresh');
+
 					}
 						}else{
-							echo "<script>alert('Maaf Username Tidak Aktif. ');";
-					
+							// echo "<script>alert('Maaf Username Tidak Aktif. ');";
+							
+							echo "<script language='javascript'>";
+							echo "alert('Maaf akun tidak aktif')";
+							echo "</script>";
+
 							redirect('login','refresh');
 						}		
 							}else{
-								echo "<script>alert('Maaf Username atau Password salah. ');";
+								// echo "<script>alert('Maaf Username atau Password salah. ');";
+
+								echo "<script language='javascript'>";
+								echo "alert('Maaf nip atau password salah')";
+								echo "</script>";
 						
 									redirect('login','refresh');
 							}
 								}else{
-									echo "<script>alert('Maaf Username belum terdaftar. ');";
+									// echo "<script>alert('Maaf Username belum terdaftar. ');";
+
+									echo "<script language='javascript'>";
+									echo "alert('Maaf nip belum terdaftar')";
+									echo "</script>";
 							
 											redirect('login','refresh');
 								}

@@ -41,5 +41,37 @@ class Users extends MX_Controller {
 		$this->load->view('template',$data);
 	}
 
+	public function InsertUsersNuklir()
+	{
+		$nip=$this->input->post('nip');
+		$nip2=$this->input->post('nip2');
+		$nama_pegawai=$this->input->post('nm_pegawai');
+		$password=md5($this->input->post('password'));
+
+		$datapegawai = array(
+			'nip' => $nip ,
+			'nip2' => $nip2,
+			'nm_pegawai' => $nama_pegawai,
+			'password' => $password );
+
+
+		$nip=$this->input->post('nip');
+		$nama_pegawai=$this->input->post('nm_pegawai');
+		$akses=$this->input->post('akses');
+		$status=$this->input->post('status');
+
+		$datauser = array(
+			'nip' => $nip,
+			'nm_pegawai' => $nama_pegawai,
+			'akses' => $akses,
+			'aktif' => 1,
+			'status' => $status  );
+
+		$insertpegawai = $this->M_users->insertuser('v_pegawai',$datapegawai);
+		$insertuser = $this->M_users->insertuser('USER_LOGIN_NUKLIR',$datauser);
+		redirect();
+
+	}
+
 
 }

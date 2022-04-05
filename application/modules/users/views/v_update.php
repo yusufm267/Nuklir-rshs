@@ -37,12 +37,17 @@
                     <option value="">-- SELECT AKSES --</option>
                     <?php foreach ($users_nuklir as $data) { ?>
                     <option value="<?php echo $data->AKSES; ?>"><?php echo $data->AKSES; ?></option>
-                    <?php } ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">AKTIF</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKTIF; ?>" placeholder="Example : Z1">
+                <!-- <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKTIF; ?>" placeholder="Example : Z1"> -->
+                <select class="form-control select" id="exampleInputEmail1" name="AKTIF">
+                    <option value="">-- SELECT AKTIF--</option>
+                    <option value="<?php echo $data->AKTIF; ?>"><?php echo $data->AKTIF; ?>
+                    </option>
+                    <?php } ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">STATUS</label>
