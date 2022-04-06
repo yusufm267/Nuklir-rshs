@@ -50,7 +50,6 @@ class Login extends MX_Controller
 				
 						redirect('dashboard','refresh');
 					}else{
-						// echo "<script>alert('Maaf anda tidak memiliki hak akses. ');";
 						echo "<script language='javascript'>";
 						echo "alert('Maaf anda tidak memiliki hak akses')";
 						echo "</script>";
@@ -59,8 +58,6 @@ class Login extends MX_Controller
 
 					}
 						}else{
-							// echo "<script>alert('Maaf Username Tidak Aktif. ');";
-							
 							echo "<script language='javascript'>";
 							echo "alert('Maaf akun tidak aktif')";
 							echo "</script>";
@@ -68,19 +65,15 @@ class Login extends MX_Controller
 							redirect('login','refresh');
 						}		
 							}else{
-								// echo "<script>alert('Maaf Username atau Password salah. ');";
-
 								echo "<script language='javascript'>";
-								echo "alert('Maaf nip atau password salah')";
+								echo "alert('Maaf NIP atau PASSWORD anda salah')";
 								echo "</script>";
 						
 									redirect('login','refresh');
 							}
 								}else{
-									// echo "<script>alert('Maaf Username belum terdaftar. ');";
-
 									echo "<script language='javascript'>";
-									echo "alert('Maaf nip belum terdaftar')";
+									echo "alert('Maaf NIP anda belum terdaftar')";
 									echo "</script>";
 							
 											redirect('login','refresh');

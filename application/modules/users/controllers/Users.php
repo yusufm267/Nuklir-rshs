@@ -24,6 +24,45 @@ class Users extends MX_Controller {
 		$this->load->view('template',$data);
 	}
 
+	public function view_insert()
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='TAMBAH DATA USERS NUKLIR';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_insert';
+
+		$this->load->view('template',$data);
+	}
+
+	public function insert()
+	{
+		$NIP=$this->input->post('NIP');
+		$AKSES=$this->input->post('AKSES');
+		$AKTIF=$this->input->post('AKTIF');
+		$STATUS=$this->input->post('STATUS');
+
+		$data = array(
+			'NIP' => $NIP,
+			'AKSES' => $AKSES,
+			'AKTIF'=> $AKTIF,
+			'STATUS'=>$STATUS 
+		);
+
+		// var_dump($data);
+		// exit;
+		$this->M_users->insert_data($data,'USER_LOGIN_NUKLIR');
+		redirect('users','refresh');
+	}
+
+	public function delete($NIP)
+	{
+		$this->M_users->delete_data($NIP);
+		redirect('users','refresh');
+	}
+
 	public function view_update($NIP)
 	{
 		$data['title']='Kelola Nuklir';
@@ -41,37 +80,6 @@ class Users extends MX_Controller {
 		$this->load->view('template',$data);
 	}
 
-	public function InsertUsersNuklir()
-	{
-		$nip=$this->input->post('nip');
-		$nip2=$this->input->post('nip2');
-		$nama_pegawai=$this->input->post('nm_pegawai');
-		$password=md5($this->input->post('password'));
-
-		$datapegawai = array(
-			'nip' => $nip ,
-			'nip2' => $nip2,
-			'nm_pegawai' => $nama_pegawai,
-			'password' => $password );
-
-
-		$nip=$this->input->post('nip');
-		$nama_pegawai=$this->input->post('nm_pegawai');
-		$akses=$this->input->post('akses');
-		$status=$this->input->post('status');
-
-		$datauser = array(
-			'nip' => $nip,
-			'nm_pegawai' => $nama_pegawai,
-			'akses' => $akses,
-			'aktif' => 1,
-			'status' => $status  );
-
-		$insertpegawai = $this->M_users->insertuser('v_pegawai',$datapegawai);
-		$insertuser = $this->M_users->insertuser('USER_LOGIN_NUKLIR',$datauser);
-		redirect();
-
-	}
 
 
 }

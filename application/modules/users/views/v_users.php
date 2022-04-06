@@ -10,7 +10,7 @@
       <h3 class="card-title"><?=$subtitle?></h3>
       <div class="float-sm-right">
           <!-- <button type="button" id="btn_call_search" class="btn btn-success btn-sm"><i class="fas fa-search"></i> Pencarian</button> -->
-          <a href="<?php echo base_url(). 'jenis_pegawai/view_insert'?>" type="button" id="btn_to_action" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <b>Tambah Data</b></a>
+          <a href="<?php echo base_url(). 'users/view_insert'?>" type="button" id="btn_to_action" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <b>Tambah Data</b></a>
       </div>
   </div>
   <!-- /.card-header -->
@@ -48,7 +48,7 @@
       <td class=""><?=$data->STATUS?></td>
 			<!-- <td class=""><?=$data->SHOW_IN_LIST?></td> -->
       <td class="">
-        <?php echo anchor('users/view_update/' .$data->NIP, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|&nbsp;&nbsp; <?php echo anchor('users/delete' .$data->NIP, "<i class='nav-icon fas fa-trash'></i>"); ?>
+        <?php echo anchor('users/view_update/' .$data->NIP, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|&nbsp;&nbsp; <?php echo anchor('users/delete/' .$data->NIP, "<i class='nav-icon fas fa-trash'></i>"); ?>
       </td>
 		</tr>
            	<?php

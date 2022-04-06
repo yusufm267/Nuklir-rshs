@@ -9,6 +9,17 @@
 			$this->db=$this->load->database('default',true);
 		}
 
+		public function insert_data($data)
+		{
+			$this->db->insert('USER_LOGIN_NUKLIR',$data);
+		}
+
+		public function delete_data($NIP)
+		{
+			$this->db->where('NIP',$NIP);
+			$this->db->delete('USER_LOGIN_NUKLIR');
+		}
+
 		public function get_data()
 		{
 			// return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
@@ -36,6 +47,8 @@
 		{
 			return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
 		}
+
+
 	}
 
 	
