@@ -21,6 +21,8 @@ class Users extends MX_Controller {
 		$data['body']='v_users';
 
 		$data['data_users_nuklir'] = $this->M_users->get_data();
+		// var_dump($data);
+		// exit();
 		$this->load->view('template',$data);
 	}
 
@@ -54,12 +56,7 @@ class Users extends MX_Controller {
 		// var_dump($data);
 		// exit;
 		$this->M_users->insert_data($data,'USER_LOGIN_NUKLIR');
-		redirect('users','refresh');
-	}
-
-	public function delete($NIP)
-	{
-		$this->M_users->delete_data($NIP);
+		$this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
 		redirect('users','refresh');
 	}
 
@@ -74,12 +71,36 @@ class Users extends MX_Controller {
 		$data['body']='v_update';
 
 		$data['data_users_nuklir'] = $this->M_users->get_data_update($NIP);
-		$data['users_nuklir'] = $this->M_users->get_data_users();
+		$data['users_nuklir_akses'] = $this->M_users->get_akses();
+		$data['users_nuklir_aktif'] = $this->M_users->get_aktif();
 		// var_dump($data['users_nuklir']);
 		// exit;
 		$this->load->view('template',$data);
 	}
 
+	public function update()
+	{
+		$NIP=$this->input->post('NIP');
+		$AKSES=$this->input->post('AKSES');
+		$AKTIF=$this->input->post('AKTIF');
+		$STATUS=$this->input->post('STATUS');
+
+		$data = array(
+			'NIP' => $NIP,
+			'AKSES' => $AKSES,
+			'STATUS' => $STATUS,
+			'AKTIF' => $AKTIF );
+		$this->M_users->update_data($NIP,$data);
+		// var_dump($data);
+		// exit();
+		redirect('users','refresh');
+	}
+
+	public function delete($NIP)
+	{
+		$this->M_users->delete_data($NIP);
+		redirect('users','refresh');
+	}
 
 
 }

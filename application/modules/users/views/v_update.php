@@ -32,11 +32,6 @@
                 <label for="exampleInputEmail1">NAMA PEGAWAI</label>
                 <input type="text" class="form-control" id="exampleInputEmail1" name="NM_PEGAWAI" value="<?php echo $data_users_nuklir->NM_PEGAWAI; ?>" readonly>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">REAL PASSWORD</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->REAL_PASSWORD; ?>" placeholder="Example : Z1">
-            </div>
-
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
@@ -44,27 +39,28 @@
                         <!-- <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKSES; ?>" placeholder="Example : Z1"> -->
                         <select class="form-control select" id="exampleInputEmail1" name="AKSES">
                             <option value="">-- SELECT AKSES --</option>
-                            <?php foreach ($users_nuklir as $data) { ?>
+                            <?php foreach ($users_nuklir_akses as $data) { ?>
                             <option value="<?php echo $data->AKSES; ?>"><?php echo $data->AKSES; ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">AKTIF</label>
-                        <!-- <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->AKTIF; ?>" placeholder="Example : Z1"> -->
                         <select class="form-control select" id="exampleInputEmail1" name="AKTIF">
-                            <option value="">-- SELECT AKTIF--</option>
-                            <option value="<?php echo $data->AKTIF; ?>"><?php echo $data->AKTIF; ?>
-                            </option>
+                            <option value="">-- SELECT AKTIF --</option>
+                            <?php foreach ($users_nuklir_aktif as $data) { ?>
+                            <option value="<?php echo $data->AKTIF; ?>"><?php echo $data->AKTIF; ?></option>
                             <?php } ?>
+                            <option></option>
                         </select>
-                </div>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">STATUS</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="REAL_PASSWORD" value="<?php echo $data_users_nuklir->STATUS; ?>" placeholder="Example : Z1">
+                <input type="text" class="form-control" id="exampleInputEmail1" name="STATUS" value="<?php echo $data_users_nuklir->STATUS; ?>">
             </div>
     </div>
     <!-- /.card-body -->

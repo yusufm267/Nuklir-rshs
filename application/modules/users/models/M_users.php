@@ -20,6 +20,12 @@
 			$this->db->delete('USER_LOGIN_NUKLIR');
 		}
 
+		public function update_data($NIP,$data)
+		{
+			$this->db->where('NIP',$NIP);
+			$this->db->update('USER_LOGIN_NUKLIR',$data);
+		}
+
 		public function get_data()
 		{
 			// return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
@@ -48,6 +54,19 @@
 			return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
 		}
 
+		public function get_aktif()
+		{
+			$this->db->distinct();
+			$this->db->select('AKTIF');
+			return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();	
+		}
+
+		public function get_akses()
+		{
+			$this->db->distinct();
+			$this->db->select('AKSES');
+			return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();	
+		}
 
 	}
 
