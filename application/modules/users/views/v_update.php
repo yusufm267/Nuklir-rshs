@@ -18,19 +18,19 @@
                 <div class="col-lg-4 col-md-4">
                     <div class="form-group">
                         <label for="exampleInputEmail1">NIP</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="NIP" value="<?php echo $data_users_nuklir->NIP; ?>" readonly>
+                        <input type="text" class="form-control" name="NIP" value="<?php echo $data_users_nuklir->NIP; ?>" readonly>
                     </div>
                 </div>
                 <div class="col-lg-8 col-md-8">
                     <div class="form-group">
                         <label for="exampleInputEmail1">NIP2</label>
-                        <input type="text" class="form-control" id="exampleInputEmail1" name="NIP2" value="<?php echo $data_users_nuklir->NIP2; ?>" readonly>
+                        <input type="text" class="form-control" name="NIP2" value="<?php echo $data_users_nuklir->NIP2; ?>" readonly>
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">NAMA PEGAWAI</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="NM_PEGAWAI" value="<?php echo $data_users_nuklir->NM_PEGAWAI; ?>" readonly>
+                <input type="text" class="form-control" name="NM_PEGAWAI" value="<?php echo $data_users_nuklir->NM_PEGAWAI; ?>" readonly>
             </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">

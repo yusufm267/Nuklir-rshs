@@ -19,6 +19,18 @@ class Login extends MX_Controller
 
 	public function proses_login()
 	{
+
+		$this->form_validation->set_rules('nip', 'NIP', 'required|min_length[4]');
+		$this->form_validation->set_rules('password', 'Password', 'required');
+
+		$this->form_validation->set_message('required','%s tidak boleh kosong !');
+		$this->form_validation->set_message('min_length','$s Minimal Berisi 4 Karakter !');
+
+		$this->form_validation->set_error_delimiters('<span class="help-block">','</span>');
+
+		if ($this->form_validation->run()== FALSE) {
+			$this->load->view('template_login');
+		} else {
 		$nip=$this->input->post('nip');
 		$password=md5($this->input->post('password'));
 
@@ -47,7 +59,10 @@ class Login extends MX_Controller
 					 	$this->session->userdata('akses')=="2" OR
 					 	$this->session->userdata('akses')=="3" 
 					 	 ) {
-				
+
+						echo "<script language='javascript'>";
+						echo "alert('Selamat Datang ".$value->NM_PEGAWAI."')";
+						echo "</script>";
 						redirect('dashboard','refresh');
 					}else{
 						echo "<script language='javascript'>";
@@ -78,6 +93,10 @@ class Login extends MX_Controller
 							
 											redirect('login','refresh');
 								}
+			
+		}
+		
+
 	}
 
 	public function logout()

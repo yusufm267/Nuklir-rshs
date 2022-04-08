@@ -1,9 +1,9 @@
-<?php
+<!-- <?php
   if ($this->session->userdata('message'))
   {
     echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
   }
-?>
+?> -->
 <!-- <?php var_dump($data_users_nuklir) ?> -->
 <!-- general form elements -->
 <div class="card card-outline card-primary">
@@ -16,7 +16,8 @@
         <div class="card-body">
           <div class="form-group">
               <label for="exampleInputEmail1">NIP</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="NIP" placeholder="Masukan NIP" required >
+              <input type="text" class="form-control" id="exampleInputEmail1" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>" required>
+              <?=form_error('NIP'); ?>
           </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -50,6 +51,10 @@
 
     <div class="card-footer">
         <button type="submit" class="btn btn-primary">Insert Data</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+            <div class="float-right">
+                <a href="<?php echo base_url(). 'users/'?>" type="button" id="btn_to_action" class="btn btn-danger btn-sm"><i class="fas fa-reload"></i> <b>Back</b></a>
+            </div>
     </div>
     </form>
 </div>
