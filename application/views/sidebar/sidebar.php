@@ -54,7 +54,7 @@
             </ul>
           </li>
           <?php if ($this->session->userdata('akses')=="1") { ?>
-          <!--Sidebar Menu User -->
+          <!--Start Sidebar Menu User -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-users"></i>
@@ -78,6 +78,26 @@
               </li>
             </ul>
           </li>
+          <!-- END Sidebar Menu User -->
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-flask"></i>
+              <p>
+                Daftar Hasil Nuklir
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url("/hasil_nuklir/") ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lihat Data Hasil Nuklir</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         <?php } ?>
         </ul>
       </nav>

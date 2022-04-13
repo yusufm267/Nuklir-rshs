@@ -14,16 +14,27 @@
     <!-- form start -->
     <form method="post" action="<?php echo base_url("users/insert") ?>">
         <div class="card-body">
-          <div class="form-group">
-              <label for="exampleInputEmail1">NIP</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>" required>
-              <?=form_error('NIP'); ?>
-          </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">NIP</label>
+                          <input type="text" class="form-control" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>" required>
+                          <?=form_error('NIP'); ?>
+                      </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">ALIAS</label>
+                          <input type="text" class="form-control" name="ALIAS" placeholder="Masukan NIP" value="<?=set_value('ALIAS'); ?>" required>
+                          <!-- <?=form_error('NIP'); ?> -->
+                      </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">AKSES</label>
-                        <select class="form-control select" id="exampleInputEmail1" name="AKSES">
+                        <select class="form-control select"  name="AKSES">
                             <option value="">-- SELECT AKSES --</option> 
                             <option value=1>ADMIN</option>
                             <option value=2>STAFF</option>
@@ -33,18 +44,31 @@
                 <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                         <label for="exampleInputEmail1">AKTIF</label>           
-                        <select class="form-control select" id="exampleInputEmail1" name="AKTIF">
+                        <select class="form-control select" name="AKTIF">
                             <option value="">-- SELECT AKTIF--</option>
                             <option value=1>AKTIF</option>
                             <option value=0>TIDAK AKTIF</option>
-                            
                         </select>
-                </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="exampleInputEmail1">STATUS</label>
-                <input type="text" class="form-control" id="exampleInputEmail1" name="STATUS" placeholder="Contoh : Dokter">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">STATUS</label>
+                        <input type="text" class="form-control" name="STATUS" placeholder="Contoh : Dokter">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">STAF</label>
+                        <select class="form-control select" name="STAF">
+                            <option value="">--SELECT STAF--</option>
+                            <option value="Y">YA</option>
+                            <option value="N">TIDAK</option>    
+                        </select>
+                    </div>
+                </div>
             </div>
     </div>
     <!-- /.card-body -->
@@ -53,7 +77,7 @@
         <button type="submit" class="btn btn-primary">Insert Data</button>
         <button type="reset" class="btn btn-default">Reset</button>
             <div class="float-right">
-                <a href="<?php echo base_url(). 'users/'?>" type="button" id="btn_to_action" class="btn btn-danger btn-sm"><i class="fas fa-reload"></i> <b>Back</b></a>
+                <a href="<?php echo base_url(). 'users/'?>" type="button" id="btn_to_action" class="btn btn-danger"><b>Back</b></a>
             </div>
     </div>
     </form>

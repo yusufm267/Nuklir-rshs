@@ -26,6 +26,7 @@
       <p class="login-box-msg">Silahkan Login Terlebih Dahulu</p>
 
       <form action="<?=base_url('/login/proses_login')?>" method="POST">
+          <?=form_error('nip'); ?>
         <div class="input-group mb-3 <?=form_error('nip') ? 'has-error' : null ?>">
           <input type="text" class="form-control" placeholder="NIP" name="nip" value="<?=set_value('nip'); ?>">
           <div class="input-group-append">
@@ -34,8 +35,8 @@
             </div>
           </div>
         </div>
-          <?=form_error('nip'); ?>
-        <div class="input-group mb-3 <?=form_error('nip') ? 'has-error' : null ?>">
+        <?=form_error('password'); ?>
+        <div class="input-group mb-3 <?=form_error('passsword') ? 'has-error' : null ?>">
           <input type="password" class="form-control" placeholder="Password" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
@@ -43,7 +44,6 @@
             </div>
           </div>
         </div>
-        <?=form_error('password'); ?>
         <div class="row">
           <div class="col-12">
           	<button type="submit" class="btn btn-primary btn-block">Login</button>
