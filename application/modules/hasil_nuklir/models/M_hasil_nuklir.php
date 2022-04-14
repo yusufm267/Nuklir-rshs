@@ -21,4 +21,10 @@ class M_hasil_nuklir extends CI_Model
 	{
 		$this->db->insert('NKL_JENIS_HASIL_NUK',$data);
 	}
+
+	public function delete_data($NM_HASIL)
+	{
+		$this->db->where('NM_HASIL',$NM_HASIL);
+		$this->db->delete('NKL_JENIS_HASIL_NUK');
+	}
 }

@@ -33,7 +33,7 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="form-group">
 						<label>ID JENIS PEMERIKSAAN</label>
-						<input type="text" class="form-control" name="ID_JNS_PEMERIKSAAN" placeholder="Masukan Kadar Normal" value="<?=set_value('ID_JNS_PEMERIKSAAN'); ?>">
+						<input type="text" class="form-control" name="ID_JNS_PEMERIKSAAN" placeholder="Masukan ID Jenis Pemeriksaan" value="<?=set_value('ID_JNS_PEMERIKSAAN'); ?>">
 					</div>
 				</div>
 			</div>

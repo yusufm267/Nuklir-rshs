@@ -58,4 +58,10 @@ class Hasil_nuklir extends MX_Controller
 		$this->M_hasil_nuklir->insert_data($data,'NKL_JENIS_HASIL_NUK');
 		redirect('hasil_nuklir','refresh');
 	}
+
+	public function delete($NM_HASIL)
+	{
+		$this->M_hasil_nuklir->delete_data($NM_HASIL);
+		redirect('hasil_nuklir','refresh');
+	}
 }

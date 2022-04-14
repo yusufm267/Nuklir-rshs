@@ -40,7 +40,7 @@
       <td class=""><?=$data->ID_JNS_PEMERIKSAAN?></td>
       
       <td class="">
-        <?php echo anchor('users/view_update/' .$data->NM_HASIL, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|&nbsp;&nbsp; <?php echo anchor('users/delete/' .$data->NM_HASIL, "<i class='nav-icon fas fa-trash'></i>"); ?>
+        <?php echo anchor('users/view_update/' .$data->NM_HASIL, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|&nbsp;&nbsp; <?php echo anchor('hasil_nuklir/delete/' .$data->NM_HASIL, "<i class='nav-icon fas fa-trash'></i>"); ?>
       </td>
 		</tr>
            	<?php

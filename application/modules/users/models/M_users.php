@@ -14,10 +14,32 @@
 			$this->db->insert('USER_LOGIN_NUKLIR',$data);
 		}
 
-		public function delete_data($NIP)
+		public function insert_data_user($data)
+		{
+			$this->db->insert('USER_LOGIN_NUKLIR',$data);
+		}
+
+		public function insert_data_dokter($data2)
+		{
+
+			$q="select seq_dokter_nuk.nextval id from dual";
+			$id=$this->db->query($q)->row();
+
+			$data2['ID_DOKTER']=$id->ID;
+			$this->db->insert('NKL_DOKTER_PERIKSA_NUK',$data2);
+		}
+
+		// public function delete_data($NIP)
+		// {
+		// 	$this->db->where('NIP',$NIP);
+		// 	$this->db->delete('USER_LOGIN_NUKLIR');
+		// }
+
+		public function delete_data($NIP,$ID_DOKTER2)
 		{
 			$this->db->where('NIP',$NIP);
-			$this->db->delete('USER_LOGIN_NUKLIR');
+			$this->db->where('ID_DOKTER2',$ID_DOKTER2);
+			$this->db->delete('USER_LOGIN_NUKLIR','NKL_DOKTER_PERIKSA_NUK');
 		}
 
 		public function update_data($NIP,$data)

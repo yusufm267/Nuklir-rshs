@@ -39,24 +39,8 @@ class Users extends MX_Controller {
 		$this->load->view('template',$data);
 	}
 
-	public function insert()
+	public function insert_user()
 	{
-		$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[USER_LOGIN_NUKLIR.NIP]');
-
-		$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau NIP sudah terdaftar');
-
-
-		if ($this->form_validation->run() == FALSE) {
-			$data['title']='Kelola Nuklir';
-			$data['subtitle']='TAMBAH DATA USERS NUKLIR';
-			$data['header']='header/header';
-			$data['navbar']='navbar/navbar';
-			$data['sidebar']='sidebar/sidebar';
-			$data['footer']='footer/footer';
-			$data['body']='v_insert';
-			$this->load->view('template',$data); 
-		} else {
-			
 		$NIP=$this->input->post('NIP');
 		$AKSES=$this->input->post('AKSES');
 		$AKTIF=$this->input->post('AKTIF');
@@ -65,17 +49,62 @@ class Users extends MX_Controller {
 		$data = array(
 			'NIP' => $NIP,
 			'AKSES' => $AKSES,
-			'AKTIF'=> $AKTIF,
-			'STATUS'=>$STATUS 
+			'AKTIF' => $AKTIF,
+			'STATUS' => $STATUS
 		);
 
-		// var_dump($data);
-		// exit;
-		$this->M_users->insert_data($data,'USER_LOGIN_NUKLIR');
-		// $this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
+		$ID_DOKTER2=$this->input->post('NIP');
+		$ALIAS=$this->input->post('ALIAS');
+		$STAF=$this->input->post('STAF');
+
+		$data2 = array(
+			'ALIAS' => $ALIAS,
+			'F_STAFF' => $STAF,
+			'ID_DOKTER2' => $ID_DOKTER2
+		);
+
+		$this->M_users->insert_data_user($data,'USER_LOGIN_NUKLIR');
+		$this->M_users->insert_data_dokter($data2,'NKL_DOKTER_PERIKSA_NUK');
 		redirect('users','refresh');
-		}
 	}
+
+	// public function insert()
+	// {
+	// 	$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[USER_LOGIN_NUKLIR.NIP]');
+
+	// 	$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau NIP sudah terdaftar');
+
+
+	// 	if ($this->form_validation->run() == FALSE) {
+	// 		$data['title']='Kelola Nuklir';
+	// 		$data['subtitle']='TAMBAH DATA USERS NUKLIR';
+	// 		$data['header']='header/header';
+	// 		$data['navbar']='navbar/navbar';
+	// 		$data['sidebar']='sidebar/sidebar';
+	// 		$data['footer']='footer/footer';
+	// 		$data['body']='v_insert';
+	// 		$this->load->view('template',$data); 
+	// 	} else {
+			
+	// 	$NIP=$this->input->post('NIP');
+	// 	$AKSES=$this->input->post('AKSES');
+	// 	$AKTIF=$this->input->post('AKTIF');
+	// 	$STATUS=$this->input->post('STATUS');
+
+	// 	$data = array(
+	// 		'NIP' => $NIP,
+	// 		'AKSES' => $AKSES,
+	// 		'AKTIF'=> $AKTIF,
+	// 		'STATUS'=>$STATUS 
+	// 	);
+
+	// 	// var_dump($data);
+	// 	// exit;
+	// 	$this->M_users->insert_data($data,'USER_LOGIN_NUKLIR');
+	// 	// $this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
+	// 	redirect('users','refresh');
+	// 	}
+	// }
 
 	public function view_update($NIP)
 	{
@@ -113,9 +142,9 @@ class Users extends MX_Controller {
 		redirect('users','refresh');
 	}
 
-	public function delete($NIP)
+	public function delete($NIP,$ID_DOKTER2)
 	{
-		$this->M_users->delete_data($NIP);
+		$this->M_users->delete_data($NIP,$ID_DOKTER2);
 		redirect('users','refresh');
 	}
 

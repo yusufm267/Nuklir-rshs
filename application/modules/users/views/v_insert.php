@@ -12,7 +12,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="post" action="<?php echo base_url("users/insert") ?>">
+    <form method="post" action="<?php echo base_url("users/insert_user") ?>">
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-md-6">
@@ -25,7 +25,7 @@
                 <div class="col-lg-6 col-md-6">
                       <div class="form-group">
                           <label for="exampleInputEmail1">ALIAS</label>
-                          <input type="text" class="form-control" name="ALIAS" placeholder="Masukan NIP" value="<?=set_value('ALIAS'); ?>" required>
+                          <input type="text" class="form-control" name="ALIAS" placeholder="Masukan ALIAS" value="<?=set_value('ALIAS'); ?>">
                           <!-- <?=form_error('NIP'); ?> -->
                       </div>
                 </div>
@@ -45,7 +45,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">AKTIF</label>           
                         <select class="form-control select" name="AKTIF">
-                            <option value="">-- SELECT AKTIF--</option>
+                            <option value="">-- SELECT AKTIF --</option>
                             <option value=1>AKTIF</option>
                             <option value=0>TIDAK AKTIF</option>
                         </select>
@@ -63,7 +63,7 @@
                     <div class="form-group">
                         <label for="exampleInputEmail1">STAF</label>
                         <select class="form-control select" name="STAF">
-                            <option value="">--SELECT STAF--</option>
+                            <option value="">-- SELECT STAF --</option>
                             <option value="Y">YA</option>
                             <option value="N">TIDAK</option>    
                         </select>
