@@ -111,7 +111,7 @@ https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js
 https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/jszip/jszip.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/pdfmake/pdfmake.min.js"></script>
-<script src=".<?=base_url()?>assets/vendor/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/pdfmake/vfs_fonts.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>

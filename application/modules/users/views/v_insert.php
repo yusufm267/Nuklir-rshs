@@ -1,9 +1,3 @@
-<!-- <?php
-  if ($this->session->userdata('message'))
-  {
-    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
-  }
-?> -->
 <!-- <?php var_dump($data_users_nuklir) ?> -->
 <!-- general form elements -->
 <div class="card card-outline card-primary">

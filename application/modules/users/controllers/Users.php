@@ -41,33 +41,116 @@ class Users extends MX_Controller {
 
 	public function insert_user()
 	{
-		$NIP=$this->input->post('NIP');
+
+		$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[USER_LOGIN_NUKLIR.NIP]');
+
+		$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau NIP sudah terdaftar');
+
+		if ($this->form_validation->run() == FALSE) {
+			$data['title']='Kelola Nuklir';
+			$data['subtitle']='TAMBAH DATA USERS NUKLIR';
+			$data['header']='header/header';
+			$data['navbar']='navbar/navbar';
+			$data['sidebar']='sidebar/sidebar';
+			$data['footer']='footer/footer';
+			$data['body']='v_insert';
+			$this->load->view('template',$data); 
+		} else {
+
+			$getDoctor = $this->M_users->get_data_by_nip($this->input->post('NIP'));
+				
+			$dataPost = $this->input->post();
+			$data = [
+				'NIP' => $dataPost['NIP'],
+				'AKSES' => $dataPost['AKSES'],
+				'AKTIF' => $dataPost['AKTIF'],
+				'STATUS' => $dataPost['STATUS'],
+			];
+
+			// $NIP=$this->input->post('NIP');
+			// $AKSES=$this->input->post('AKSES');
+			// $AKTIF=$this->input->post('AKTIF');
+			// $STATUS=$this->input->post('STATUS');
+
+			// $data = array(
+			// 	'NIP' => $NIP,
+			// 	'AKSES' => $AKSES,
+			// 	'AKTIF' => $AKTIF,
+			// 	'STATUS' => $STATUS
+			// );
+
+			$ID_DOKTER2=$this->input->post('NIP');
+			$ALIAS=$this->input->post('ALIAS');
+			$STAF=$this->input->post('STAF');
+
+			$data2 = array(
+				'ALIAS' => $ALIAS,
+				'F_STAFF' => $STAF,
+				'ID_DOKTER2' => $ID_DOKTER2,
+				'NAMA_DOKTER' => $getDoctor->NM_PEGAWAI
+			);
+
+
+			$this->M_users->insert_data_user($data,'USER_LOGIN_NUKLIR');
+			$this->M_users->insert_data_dokter($data2,'NKL_DOKTER_PERIKSA_NUK');
+			$this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
+			
+			redirect('users','refresh');
+		}
+	}
+
+
+
+	public function view_update($NIP)
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='DATA USERS NUKLIR';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_update';
+
+		$data['data_users_nuklir'] = $this->M_users->get_data_update($NIP);
+		$data['users_nuklir_akses'] = $this->M_users->get_akses();
+		$data['users_nuklir_aktif'] = $this->M_users->get_aktif();
+		$data['users_nuklir_staff'] = $this->M_users->get_staff();
+		// var_dump($data['users_nuklir']);
+		// exit;
+		$this->load->view('template',$data);
+	}
+
+	public function update($NIP)
+	{
 		$AKSES=$this->input->post('AKSES');
 		$AKTIF=$this->input->post('AKTIF');
 		$STATUS=$this->input->post('STATUS');
 
 		$data = array(
-			'NIP' => $NIP,
 			'AKSES' => $AKSES,
-			'AKTIF' => $AKTIF,
-			'STATUS' => $STATUS
+			'STATUS' => $STATUS,
+			'AKTIF' => $AKTIF
 		);
 
-		$ID_DOKTER2=$this->input->post('NIP');
-		$ALIAS=$this->input->post('ALIAS');
-		$STAF=$this->input->post('STAF');
+		$STAFF = $this->input->post('F_STAFF');
 
 		$data2 = array(
-			'ALIAS' => $ALIAS,
-			'F_STAFF' => $STAF,
-			'ID_DOKTER2' => $ID_DOKTER2
+			'F_STAFF' => $STAFF
 		);
 
-		$this->M_users->insert_data_user($data,'USER_LOGIN_NUKLIR');
-		$this->M_users->insert_data_dokter($data2,'NKL_DOKTER_PERIKSA_NUK');
+		$this->M_users->update_data_user($NIP,$data);
+		$this->M_users->update_data_dokter_periksa($NIP,$data2);
+		// var_dump($data);
+		// exit();
 		redirect('users','refresh');
 	}
 
+	public function delete($NIP)
+	{
+		$this->M_users->delete_data($NIP);
+		redirect('users','refresh');
+	}
+	
 	// public function insert()
 	// {
 	// 	$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[USER_LOGIN_NUKLIR.NIP]');
@@ -105,48 +188,6 @@ class Users extends MX_Controller {
 	// 	redirect('users','refresh');
 	// 	}
 	// }
-
-	public function view_update($NIP)
-	{
-		$data['title']='Kelola Nuklir';
-		$data['subtitle']='DATA USERS NUKLIR';
-		$data['header']='header/header';
-		$data['navbar']='navbar/navbar';
-		$data['sidebar']='sidebar/sidebar';
-		$data['footer']='footer/footer';
-		$data['body']='v_update';
-
-		$data['data_users_nuklir'] = $this->M_users->get_data_update($NIP);
-		$data['users_nuklir_akses'] = $this->M_users->get_akses();
-		$data['users_nuklir_aktif'] = $this->M_users->get_aktif();
-		// var_dump($data['users_nuklir']);
-		// exit;
-		$this->load->view('template',$data);
-	}
-
-	public function update()
-	{
-		$NIP=$this->input->post('NIP');
-		$AKSES=$this->input->post('AKSES');
-		$AKTIF=$this->input->post('AKTIF');
-		$STATUS=$this->input->post('STATUS');
-
-		$data = array(
-			'NIP' => $NIP,
-			'AKSES' => $AKSES,
-			'STATUS' => $STATUS,
-			'AKTIF' => $AKTIF );
-		$this->M_users->update_data($NIP,$data);
-		// var_dump($data);
-		// exit();
-		redirect('users','refresh');
-	}
-
-	public function delete($NIP,$ID_DOKTER2)
-	{
-		$this->M_users->delete_data($NIP,$ID_DOKTER2);
-		redirect('users','refresh');
-	}
 
 
 }
