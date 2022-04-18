@@ -20,13 +20,13 @@ class Login extends MX_Controller
 	public function proses_login()
 	{
 
-		$this->form_validation->set_rules('nip', 'NIP', 'required|min_length[4]');
-		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_rules('nip', 'NIP', 'trim|required|min_length[4]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
-		$this->form_validation->set_message('required','%s tidak boleh kosong !');
-		$this->form_validation->set_message('min_length','$s Minimal Berisi 4 Karakter !');
+		$this->form_validation->set_message('required','* %s tidak boleh kosong !');
+		$this->form_validation->set_message('min_length','* $s Minimal Berisi 4 Karakter !');
 
-		$this->form_validation->set_error_delimiters('<span class="help-block">','</span>');
+		$this->form_validation->set_error_delimiters('<span style="color:red">','</span>');
 
 		if ($this->form_validation->run()== FALSE) {
 			$this->load->view('template_login');

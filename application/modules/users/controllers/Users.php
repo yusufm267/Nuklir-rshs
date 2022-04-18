@@ -43,8 +43,12 @@ class Users extends MX_Controller {
 	{
 
 		$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[USER_LOGIN_NUKLIR.NIP]');
+		$this->form_validation->set_rules('ALIAS' , 'Nama Alias' , 'required|is_unique[NKL_DOKTER_PERIKSA_NUK.ALIAS]');
 
-		$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau NIP sudah terdaftar');
+		$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau data sudah terdaftar');
+		$this->form_validation->set_message('required', '* %s tidak boleh kosong');
+
+		$this->form_validation->set_error_delimiters('<div style="color:red">','</div>');
 
 		if ($this->form_validation->run() == FALSE) {
 			$data['title']='Kelola Nuklir';
@@ -140,6 +144,7 @@ class Users extends MX_Controller {
 
 		$this->M_users->update_data_user($NIP,$data);
 		$this->M_users->update_data_dokter_periksa($NIP,$data2);
+		$this->session->set_flashdata('message',array('message'=>'Data Berhasil Diperbaharui','type'=>'success','head'=>'Success'));
 		// var_dump($data);
 		// exit();
 		redirect('users','refresh');
@@ -148,6 +153,7 @@ class Users extends MX_Controller {
 	public function delete($NIP)
 	{
 		$this->M_users->delete_data($NIP);
+		$this->session->set_flashdata('message',array('message'=>'Data Berhasil Dihapus','type'=>'success','head'=>'Success'));
 		redirect('users','refresh');
 	}
 	

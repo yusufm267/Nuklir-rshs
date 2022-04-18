@@ -11,8 +11,8 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6">
                       <div class="form-group">
-                          <label for="exampleInputEmail1">NIP</label>
-                          <input type="text" class="form-control" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>" required>
+                          <label for="inputError">NIP</label>
+                          <input type="text" class="form-control" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>">
                           <?=form_error('NIP'); ?>
                       </div>
                 </div>
@@ -20,7 +20,7 @@
                       <div class="form-group">
                           <label for="exampleInputEmail1">ALIAS</label>
                           <input type="text" class="form-control" name="ALIAS" placeholder="Masukan ALIAS" value="<?=set_value('ALIAS'); ?>">
-                          <!-- <?=form_error('NIP'); ?> -->
+                          <?=form_error('ALIAS'); ?>
                       </div>
                 </div>
             </div>

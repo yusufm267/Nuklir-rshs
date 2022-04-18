@@ -80,7 +80,6 @@
 
 		public function get_data_by_nip($nip)
 		{
-			// return $this->db->from('USER_LOGIN_NUKLIR')->get()->result();
 			$query="
 					select * from v_pegawai where NIP = '" .$nip. "'
 					";

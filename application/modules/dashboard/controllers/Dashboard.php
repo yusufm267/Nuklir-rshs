@@ -20,7 +20,7 @@ class Dashboard extends MX_Controller {
 		$data['footer']='footer/footer';
 		$data['body']='v_dashboard';
 
-		$data['list_data'] = $this->M_dashboard->get_data();
+		$data['list_data'] = $this->M_dashboard->get_data_dashboard();
 		$this->load->view('template',$data);
 	}
 

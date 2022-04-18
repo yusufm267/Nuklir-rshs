@@ -79,7 +79,10 @@
             </ul>
           </li>
           <!-- END Sidebar Menu User -->
+        <?php } ?>
 
+        <?php if ($this->session->userdata('akses')=="1" OR $this->session->userdata('akses')=="2" ) { ?>
+          <!-- Start Sidebar Menu Jenis Hasil Nuklir -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-flask"></i>
@@ -97,7 +100,7 @@
               </li>
             </ul>
           </li>
-
+          <!-- END Sidebar Menu Jenis Hasil Nuklir -->
         <?php } ?>
         </ul>
       </nav>
