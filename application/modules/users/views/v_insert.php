@@ -12,14 +12,14 @@
                 <div class="col-lg-6 col-md-6">
                       <div class="form-group">
                           <label for="inputError">NIP</label>
-                          <input type="text" class="form-control" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>">
+                          <input type="text" class="form-control <?=form_error('NIP') ? 'is-invalid' : null ?>" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>">
                           <?=form_error('NIP'); ?>
                       </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                       <div class="form-group">
                           <label for="exampleInputEmail1">ALIAS</label>
-                          <input type="text" class="form-control" name="ALIAS" placeholder="Masukan ALIAS" value="<?=set_value('ALIAS'); ?>">
+                          <input type="text" class="form-control <?=form_error('ALIAS') ? 'is-invalid' : null ?>" name="ALIAS" placeholder="Masukan ALIAS" value="<?=set_value('ALIAS'); ?>">
                           <?=form_error('ALIAS'); ?>
                       </div>
                 </div>

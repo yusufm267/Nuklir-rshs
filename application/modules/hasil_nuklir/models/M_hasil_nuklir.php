@@ -17,10 +17,20 @@ class M_hasil_nuklir extends CI_Model
 		return $this->db->from('NKL_JENIS_HASIL_NUK')->get()->result();
 	}
 
+	public function get_seq_hasil_nuk()
+	{
+		$query="select seq_dokter_nuk.nextval id from dual";
+		$this->db->query($query)->row();
+	}
+
 	public function insert_data($data)
 	{
+		$id=$this->get_seq_hasil_nuk()->ID;
+		$data['ID_JENIS']= $id;
+
 		$this->db->insert('NKL_JENIS_HASIL_NUK',$data);
 	}
+
 
 	public function delete_data($NM_HASIL)
 	{

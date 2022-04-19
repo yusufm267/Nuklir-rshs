@@ -24,13 +24,13 @@ class M_dashboard extends CI_Model {
 
     public function get_data_dashboard(){
         $query="
-            select 'User Nuklir' as nama,count(*) as total, 'User Login Nuklir' from user_login_nuklir
+            select 'User Nuklir' as nama,count(*) as total, 'User Login Nuklir' from nkl_user_login_nuklir
             union all
             select 'Dokter Nuklir' as nama,count(*) as total, 'Dokter Periksa Nuklir' from nkl_dokter_periksa_nuk
             union all
             select 'Jenis Hasil Nuklir' as nama, count(*) as total,'Jenis Hasil Nuklir' from nkl_jenis_hasil_nuk
             union all
-            select 'User Login Nuklir' as nama,count(*) as total, 'User Login Nuklir' from user_login_nuklir where aktif='1'
+            select 'User Nuklir' as nama,count(*) as total, 'User Login Nuklir' from nkl_user_login_nuklir where aktif='1'
         ";
         return $this->db->query($query)->result();
     }

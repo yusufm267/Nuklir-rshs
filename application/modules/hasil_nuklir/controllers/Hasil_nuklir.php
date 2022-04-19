@@ -56,12 +56,16 @@ class Hasil_nuklir extends MX_Controller
 		);
 
 		$this->M_hasil_nuklir->insert_data($data,'NKL_JENIS_HASIL_NUK');
-		redirect('hasil_nuklir','refresh');
+		echo $data;
+		exit;
+		// $this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
+		// redirect('hasil_nuklir','refresh');
 	}
 
 	public function delete($NM_HASIL)
 	{
 		$this->M_hasil_nuklir->delete_data($NM_HASIL);
+		// $this->session->set_flashdata('message',array('message'=>'Data Berhasil Dihapus','type'=>'success','head'=>'Success'));
 		redirect('hasil_nuklir','refresh');
 	}
 }
