@@ -43,6 +43,7 @@ class Users extends MX_Controller {
 	{
 
 		$this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[NKL_USER_LOGIN_NUKLIR.NIP]');
+		// $this->form_validation->set_rules('NIP' , 'NIP' , 'required|is_unique[NKL_DOKTER_PERIKSA_NUK.ID_DOKTER2]'); 
 		$this->form_validation->set_rules('ALIAS' , 'Nama Alias' , 'required|is_unique[NKL_DOKTER_PERIKSA_NUK.ALIAS]');
 
 		$this->form_validation->set_message('is_unique', '* %s tidak boleh sama atau data sudah terdaftar');
@@ -99,7 +100,8 @@ class Users extends MX_Controller {
 			$this->M_users->insert_data_user($data,'NKL_USER_LOGIN_NUKLIR');
 			$this->M_users->insert_data_dokter($data2,'NKL_DOKTER_PERIKSA_NUK');
 			$this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
-			
+			// var_dump($data,$data2);
+			// exit;
 			redirect('users','refresh');
 		}
 	}

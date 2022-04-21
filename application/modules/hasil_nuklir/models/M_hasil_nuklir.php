@@ -17,24 +17,40 @@ class M_hasil_nuklir extends CI_Model
 		return $this->db->from('NKL_JENIS_HASIL_NUK')->get()->result();
 	}
 
-	public function get_seq_hasil_nuk()
+	// public function get_seq_hasil_nuk()
+	// {
+	// 	$query="select seq_jns_hasil_nuk.nextval id from dual";
+	// 	$this->db->query($query)->row();
+	// }
+
+	public function insert_data($nm_tbl,$data)
 	{
-		$query="select seq_dokter_nuk.nextval id from dual";
-		$this->db->query($query)->row();
+		$query="select seq_jns_hasil_nuk.nextval id from dual";
+		$id=$this->db->query($query)->row();
+		// var_dump($id->ID);
+		// exit;
+		$data['ID_JENIS'] = $id->ID;
+		$this->db->insert($nm_tbl,$data);
+		return $this->db->affected_rows();
 	}
 
-	public function insert_data($data)
+	public function get_data_update($ID_JENIS)
 	{
-		$id=$this->get_seq_hasil_nuk()->ID;
-		$data['ID_JENIS']= $id;
-
-		$this->db->insert('NKL_JENIS_HASIL_NUK',$data);
+		$query="select * from NKL_JENIS_HASIL_NUK where ID_JENIS = '".$ID_JENIS."'";
+		return $this->db->query($query)->row();
 	}
 
-
-	public function delete_data($NM_HASIL)
+	public function update_data($ID_JENIS,$data)
 	{
-		$this->db->where('NM_HASIL',$NM_HASIL);
+		$this->db->where('ID_JENIS',$ID_JENIS);
+		$this->db->update('NKL_JENIS_HASIL_NUK',$data);
+		return $this->db->affected_rows();
+	}
+
+	public function delete_data($ID_JENIS)
+	{
+		$this->db->where('ID_JENIS',$ID_JENIS);
 		$this->db->delete('NKL_JENIS_HASIL_NUK');
+		return $this->db->affected_rows();
 	}
 }

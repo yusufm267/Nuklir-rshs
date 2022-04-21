@@ -1,3 +1,10 @@
+<?php
+  if ($this->session->userdata('message'))
+  {
+    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
+  }
+?>
+
  <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">

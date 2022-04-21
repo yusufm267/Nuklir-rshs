@@ -14,8 +14,17 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/vendor/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<?=base_url()?>assets/vendor/adminlte/dist/css/adminlte.min.css">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?=base_url()?>assets/vendor/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 </head>
 <body class="hold-transition login-page">
+<?php
+  if ($this->session->userdata('message'))
+  {
+    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
+  }
+?>
+
 <div class="login-box">
 		<div class="card card-outline card-primary">
     <div class="card-header text-center">
@@ -62,11 +71,15 @@
   </div>
   <!-- /.card -->
 </div>
+<!-- SweetAlert2 -->
+<script src="<?=base_url()?>assets/vendor/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- jQuery -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>assets/vendor/adminlte/dist/js/adminlte.min.js"></script>
+
+<!-- <script src="<?=base_url()?>assets/js/custom.js?versi=4"></script> -->
 </body>
 </html>

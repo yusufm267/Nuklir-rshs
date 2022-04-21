@@ -24,7 +24,7 @@ class Login extends MX_Controller
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
 
 		$this->form_validation->set_message('required','* %s tidak boleh kosong !');
-		$this->form_validation->set_message('min_length','* $s Minimal Berisi 4 Karakter !');
+		$this->form_validation->set_message('min_length','* %s Minimal Berisi 4 Karakter !');
 
 		$this->form_validation->set_error_delimiters('<span style="color:red">','</span>');
 
@@ -60,39 +60,39 @@ class Login extends MX_Controller
 					 	$this->session->userdata('akses')=="3" 
 					 	 ) {
 
-						echo "<script language='javascript'>";
-						echo "alert('Selamat Datang ".$value->NM_PEGAWAI."')";
-						echo "</script>";
+						// echo "<script language='javascript'>";
+						// echo "alert('Selamat Datang ".$value->NM_PEGAWAI."')";
+						// echo "</script>";
+						$this->session->set_flashdata('message',array('message'=>'Selamat Datang '.$value->NM_PEGAWAI,'type'=>'success','head'=>'Login Berhasil'));
 						redirect('dashboard','refresh');
-					}else{
-						echo "<script language='javascript'>";
-						echo "alert('Maaf anda tidak memiliki hak akses')";
-						echo "</script>";
-
-						redirect('login','refresh');
-
-					}
 						}else{
 							echo "<script language='javascript'>";
-							echo "alert('Maaf akun tidak aktif')";
+							echo "alert('Maaf anda tidak memiliki hak akses')";
 							echo "</script>";
-
+							// $this->session->set_flashdata('message',array('message'=>'Maaf Anda Tidak Memiliki Hak Akses','type'=>'error','head'=>'Login Gagal'));
 							redirect('login','refresh');
-						}		
+						}
 							}else{
 								echo "<script language='javascript'>";
-								echo "alert('Maaf NIP atau PASSWORD anda salah')";
+								echo "alert('Maaf akun tidak aktif')";
 								echo "</script>";
-						
-									redirect('login','refresh');
-							}
+								// $this->session->set_flashdata('message',array('message'=>'Maaf Akun Anda Tidak Aktif','type'=>'error','head'=>'Login Gagal'));
+								redirect('login','refresh');
+							}		
 								}else{
 									echo "<script language='javascript'>";
-									echo "alert('Maaf NIP anda belum terdaftar')";
+									echo "alert('Maaf NIP atau PASSWORD anda salah')";
 									echo "</script>";
-							
-											redirect('login','refresh');
+										// $this->session->set_flashdata('message',array('message'=>'Maaf NIP atau Password anda salah','type'=>'error','head'=>'Login Gagal'));
+										redirect('login','refresh');
 								}
+									}else{
+										echo "<script language='javascript'>";
+										echo "alert('Maaf NIP anda belum terdaftar')";
+										echo "</script>";
+												// $this->session->set_flashdata('message',array('message'=>'Maaf NIP anda belum terdaftar','type'=>'error','head'=>'Login Gagal'));
+												redirect('login','refresh');
+									}
 			
 		}
 		
