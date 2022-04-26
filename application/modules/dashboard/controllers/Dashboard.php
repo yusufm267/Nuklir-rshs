@@ -8,6 +8,14 @@ class Dashboard extends MX_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_dashboard');
+
+		// $session_data = $this->session->userdata('sess_user');
+
+		// if ($session_data) {
+		// 	$this->load->model('M_dashboard');
+		// } else {
+		// 	redirect('login','refresh');
+		// }
 	}
 
 	public function index()

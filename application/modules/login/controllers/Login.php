@@ -36,15 +36,7 @@ class Login extends MX_Controller
 
 		$cek=$this->M_login->cek_user($nip);
 		if ($cek) {
-
 			$ceklogin = $this->M_login->cek_Login($nip,$password);
-			// var_dump($ceklogin);
-			// // echo "<br>";
-			// // echo md5($password);
-			// // echo "<br>";
-			// // echo $password;
-			// exit;
-
 			if ($ceklogin) {
 				foreach ($ceklogin as $value)
 
