@@ -9,13 +9,21 @@ class Dashboard extends MX_Controller {
 		parent::__construct();
 		$this->load->model('M_dashboard');
 
-		// $session_data = $this->session->userdata('sess_user');
+		$session_data = @$this->session->userdata()['nip'];
 
-		// if ($session_data) {
-		// 	$this->load->model('M_dashboard');
-		// } else {
-		// 	redirect('login','refresh');
-		// }
+		// var_dump($session_data);
+		// die;
+		if ($session_data) {
+			$this->load->model('M_dashboard');
+		} else {
+
+
+			$this->session->set_flashdata('message',array('message'=>'Silahkan Login Terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
+			// var_dump($this->session->userdata('message'));
+			// die;
+
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()

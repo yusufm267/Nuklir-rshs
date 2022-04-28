@@ -18,12 +18,7 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/vendor/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
 </head>
 <body class="hold-transition login-page">
-<?php
-  if ($this->session->userdata('message'))
-  {
-    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
-  }
-?>
+
 
 <div class="login-box">
 		<div class="card card-outline card-primary">
@@ -37,7 +32,7 @@
       <form action="<?=base_url('/login/proses_login')?>" method="POST">
           <?=form_error('nip'); ?>
         <div class="input-group mb-3">
-          <input type="text" class="form-control <?=form_error('nip') ? 'is-invalid' : null ?>" placeholder="NIP" name="nip" value="<?=set_value('nip'); ?>">
+          <input type="text" class="form-control <?=form_error('nip') ? 'is-invalid' : null ?>" placeholder="NIP/ALIAS" name="nip" value="<?=set_value('nip'); ?>">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -46,7 +41,7 @@
         </div>
         <?=form_error('password'); ?>
         <div class="input-group mb-3">
-          <input type="password" class="form-control <?=form_error('password') ? 'is-invalid' : null ?>" placeholder="Password" name="password">
+          <input type="password" class="form-control <?=form_error('password') ? 'is-invalid' : null ?>" placeholder="PASSWORD" name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -80,6 +75,12 @@
 <!-- AdminLTE App -->
 <script src="<?=base_url()?>assets/vendor/adminlte/dist/js/adminlte.min.js"></script>
 
-<!-- <script src="<?=base_url()?>assets/js/custom.js?versi=4"></script> -->
+<script src="<?=base_url()?>assets/js/custom.js?versi=4"></script>
+<?php
+  if (@$this->session->userdata('message')['message'])
+  {
+    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
+  }
+?>
 </body>
 </html>
