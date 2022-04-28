@@ -22,7 +22,7 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3><?=$list_data[0]->NAMA?></h3>
+                <h4><?=$list_data[0]->NAMA?></h4>
 
                 <p><?=$list_data[0]->TOTAL?> User</p>
                 <!-- <p><?=$list_data[3]->TOTAL?> User</p> -->
@@ -38,7 +38,7 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3><?=$list_data[1]->NAMA?></h3>
+                <h4><?=$list_data[1]->NAMA?></h4>
 
                 <p><?=$list_data[1]->TOTAL?> Dokter</p>
               </div>
@@ -53,7 +53,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3><?=$list_data[2]->NAMA?></h3>
+                <h4><?=$list_data[2]->NAMA?></h4>
 
                 <p><?=$list_data[2]->TOTAL?> Hasil</p>
               </div>
@@ -68,7 +68,7 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h3>65</h3>
+                <h4>65</h4>
 
                 <p>Unique Visitors</p>
               </div>
