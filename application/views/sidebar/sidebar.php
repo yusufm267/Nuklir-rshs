@@ -24,6 +24,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
+          <li class="nav-header">KELOLA ADMIN</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -83,6 +84,7 @@
 
         <?php if ($this->session->userdata('akses')=="1" OR $this->session->userdata('akses')=="2" ) { ?>
           <!-- Start Sidebar Menu Jenis Hasil Nuklir -->
+          <li class="nav-header">KELOLA NUKLIR</li>
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-flask"></i>

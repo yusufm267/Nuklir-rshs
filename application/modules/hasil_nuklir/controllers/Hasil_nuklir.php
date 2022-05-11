@@ -10,12 +10,21 @@ class Hasil_nuklir extends MX_Controller
 	{
 		parent::__construct();
 		$this->load->model('M_hasil_nuklir');
+
+		$session_data= @$this->session->userdata()['nip'];
+
+		if ($session_data) {
+			$this->load->model('M_hasil_nuklir');
+		} else {
+			$this->session->set_flashdata('message',array('message'=>'Silahkan Login Terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
+			redirect('login','refresh');
+		}
 	}
 
 	public function index()
 	{
 		$data['title']='Kelola Nuklir';
-		$data['subtitle']='DATA Hasil Nuklir';
+		$data['subtitle']='Data Hasil Nuklir';
 		$data['header']='header/header';
 		$data['navbar']='navbar/navbar';
 		$data['sidebar']='sidebar/sidebar';

@@ -8,6 +8,16 @@ class Users extends MX_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_users');
+
+		$session_data = @$this->session->userdata()['nip'];
+
+		if ($session_data) {
+			$this->load->model('M_users');
+		} else {
+			$this->session->set_flashdata('message',array('message'=>'Silahkan Login terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
+			redirect('login','refresh');
+		}
+		
 	}
 
 	public function index()

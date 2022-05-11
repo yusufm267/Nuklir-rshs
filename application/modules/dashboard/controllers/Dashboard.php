@@ -11,17 +11,10 @@ class Dashboard extends MX_Controller {
 
 		$session_data = @$this->session->userdata()['nip'];
 
-		// var_dump($session_data);
-		// die;
 		if ($session_data) {
 			$this->load->model('M_dashboard');
 		} else {
-
-
 			$this->session->set_flashdata('message',array('message'=>'Silahkan Login Terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
-			// var_dump($this->session->userdata('message'));
-			// die;
-
 			redirect('login','refresh');
 		}
 	}
