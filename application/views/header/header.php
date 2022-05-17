@@ -67,7 +67,7 @@
 <!-- bs-custom-file-input -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <!-- AdminLTE App -->
-<!-- <script src="../../dist/js/adminlte.min.js"></script> -->
+<script src="<?=base_url()?>assets/vendor/adminlte/dist/js/adminlte.min.js"></script>
 <!-- ChartJS -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
@@ -140,7 +140,7 @@ https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js -->
 <script src="<?=base_url()?>assets/vendor/adminlte/plugins/toastr/toastr.min.js"></script>
 
 <!-- AdminLTE App -->
-<script src="<?=base_url()?>assets/vendor/adminlte/dist/js/adminlte.min.js"></script> 
+<!-- <script src="<?=base_url()?>assets/vendor/adminlte/dist/js/adminlte.min.js"></script>  -->
 
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="../../dist/js/demo.js"></script> -->

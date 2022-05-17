@@ -11,7 +11,7 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="<?=base_url()?>assets/img/user2-160x160.jpg" class="img-circle elevation-2" alt="<?php echo $this->session->userdata('nm_pegawai') ?>">
+          <img src="<?=base_url()?>assets/img/user_logo.png" class="img-circle elevation-2" alt="<?php echo $this->session->userdata('nm_pegawai') ?>">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php echo $this->session->userdata('nm_pegawai') ?></a>
@@ -21,7 +21,7 @@
 
       <!-- Sidebar Menu -->
       <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <ul id=nav class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-header">KELOLA ADMIN</li>
@@ -35,7 +35,7 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?=base_url('dashboard') ?>" class="nav-link active">
+                <a href="<?=base_url('dashboard') ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Dashboard Utama</p>
                 </a>
@@ -110,3 +110,19 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+<script type="text/javascript">
+
+  /** add active class and stay opened when selected **/
+  var url = window.location;
+
+  $('ul.nav-sidebar a').filter(function(){
+
+    return this.href == url;
+
+  }).addClass('active');
+
+  $('ul.nav-treeview a').filter(function(){
+    return this.href == url;
+  }).parentsUntil(".nav-sidebar > .nav-treeview").addClass('menu-open').prev('a').addClass('active');
+</script>
