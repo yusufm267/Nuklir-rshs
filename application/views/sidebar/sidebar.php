@@ -86,6 +86,12 @@
           <!-- Start Sidebar Menu Jenis Hasil Nuklir -->
           <li class="nav-header">KELOLA NUKLIR</li>
           <li class="nav-item">
+            <a href="<?php echo base_url('/hasil_nuklir/view_insert_hasil_nuklir/') ?>" class="nav-link">
+              <i class="nav-icon fas fa-flask"></i>
+              <p>Input Hasil Nuklir</p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-flask"></i>
               <p>

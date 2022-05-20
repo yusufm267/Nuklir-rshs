@@ -55,7 +55,7 @@ class Login extends MX_Controller
 							// echo "<script language='javascript'>";
 							// echo "alert('Selamat Datang ".$value->NM_PEGAWAI."')";
 							// echo "</script>";
-							$this->session->set_flashdata('message',array('message'=>'Selamat Datang '.$value->NM_PEGAWAI,'type'=>'success','head'=>'Login Berhasil'));
+							// $this->session->set_flashdata('message',array('message'=>'Selamat Datang '.$value->NM_PEGAWAI,'type'=>'success','head'=>'Login Berhasil'));
 							redirect('dashboard','refresh');
 							}else{
 								// echo "<script language='javascript'>";

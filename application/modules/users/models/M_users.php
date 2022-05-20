@@ -9,9 +9,44 @@
 			$this->db=$this->load->database('default',true);
 		}
 
-		public function insert_data($data)
+		public function insert_data()
 		{
-			$this->db->insert('NKL_USER_LOGIN_NUKLIR',$data);
+			// $this->db->insert('NKL_USER_LOGIN_NUKLIR',$data);
+			$this->db->trans_start();
+			$this->db->trans_strict(FALSE);
+
+			$getDoctor = $this->M_users->get_data_by_nip($this->input->post('NIP'));
+
+			$userLogin = [
+				'NIP' => $this->input->post('NIP',true),
+				'AKSES' => $this->input->post('AKSES',true),
+				'AKTIF' => $this->input->post('AKTIF',true),
+				'STATUS' => $this->input->post('STATUS',true)
+			];
+
+			$this->db->insert('NKL_USER_LOGIN_NUKLIR',$user);
+
+			$last_id = $this->db->insert_id();
+
+			$dokterNuklir = [
+				'ID_DOKTER2' => $last_id,
+				'ALIAS' => $this->input->post('ALIAS',true),
+				'F_STAFF' => $this->input->post('F_STAFF',true),
+				'NAMA_DOKTER' => $getDoctor->NM_PEGAWAI
+			];
+
+			$this->db->insert('NKL_DOKTER_PERIKSA_NUK',$dokterNuklir);
+
+			$this->db->trans_complete();
+
+			if ($this->db->trans_status() === FALSE) {
+				$this->db->trans_rollback();
+				return FALSE;
+			} else {
+				$this->db->trans_commit();
+				return TRUE;
+			}
+
 		}
 
 		public function insert_data_user($data)

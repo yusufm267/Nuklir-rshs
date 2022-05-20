@@ -24,7 +24,7 @@ class Hasil_nuklir extends MX_Controller
 	public function index()
 	{
 		$data['title']='Kelola Nuklir';
-		$data['subtitle']='Data Hasil Nuklir';
+		$data['subtitle']='DATA HASIL NUKLIR';
 		$data['header']='header/header';
 		$data['navbar']='navbar/navbar';
 		$data['sidebar']='sidebar/sidebar';
@@ -35,6 +35,20 @@ class Hasil_nuklir extends MX_Controller
 		// var_dump($data);
 		// exit();
 		$this->load->view('template',$data);
+	}
+
+
+	public function view_insert_hasil_nuklir()
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='INPUT HASIL NUKLIR';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_insert_hasil_nuklir';
+
+		$this->load->view('template', $data);
 	}
 
 	public function view_insert()
