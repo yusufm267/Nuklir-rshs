@@ -5,7 +5,7 @@
   }
 ?>
 
-<div class="card card-outline card-danger">
+<div class="card card-outline card-primary">
   <div class="card-header">
       <h3 class="card-title"><?=$subtitle?></h3>
       <div class="float-sm-right">

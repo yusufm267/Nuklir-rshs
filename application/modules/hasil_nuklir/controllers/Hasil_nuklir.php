@@ -152,4 +152,15 @@ class Hasil_nuklir extends MX_Controller
 		// $this->session->set_flashdata('message',array('message'=>'Data Berhasil Dihapus','type'=>'success','head'=>'Success'));
 		// redirect('hasil_nuklir','refresh');
 	}
+
+	public function getMedrecAutoComplete()
+	{
+		$keyword=$this->input->post('keyword');
+		$data=$this->M_hasil_nuklir->getMedrecAutoComplete($keyword);
+		array_push($data,(object)array(
+			"MEDREC"=>'NOT',
+			"NAMA"=>'FOUND'
+		));
+		echo json_decode($data);
+	}
 }

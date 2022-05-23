@@ -53,4 +53,26 @@ class M_hasil_nuklir extends CI_Model
 		$this->db->delete('NKL_JENIS_HASIL_NUK');
 		return $this->db->affected_rows();
 	}
+
+	public function getMedrecAutoComplete($keyword)
+	{
+		$this->db->distinct();
+		$this->db->select('NO_MEDREC');
+		$this->db->from('NKL_PASIEN_IRJ');
+		if ($keyword!='')
+		{
+			$this->db->like("UPPER(\"MEDREC\")",strtoupper($keyword));
+			$this->db->or_like("UPPER(\"NAMA\")",strtoupper($keyword));
+		} else {
+			$this->db->where("NO_MEDREC",'xxxxx');
+		}
+		$this->db->limit(30,0);
+		return $this->db->get()->result_array();		
+	}
+
+	public function cek_medrec($medrec)
+	{
+		$this->db->where('NO_MEDREC',$medrec);
+		return $this->db->get('NKL_PASIEN_IRJ')->row();
+	}
 }
