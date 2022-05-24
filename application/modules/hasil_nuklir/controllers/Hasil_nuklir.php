@@ -11,14 +11,14 @@ class Hasil_nuklir extends MX_Controller
 		parent::__construct();
 		$this->load->model('M_hasil_nuklir');
 
-		$session_data= @$this->session->userdata()['nip'];
+		// $session_data= @$this->session->userdata()['nip'];
 
-		if ($session_data) {
-			$this->load->model('M_hasil_nuklir');
-		} else {
-			$this->session->set_flashdata('message',array('message'=>'Silahkan Login Terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
-			redirect('login','refresh');
-		}
+		// if ($session_data) {
+		// 	$this->load->model('M_hasil_nuklir');
+		// } else {
+		// 	$this->session->set_flashdata('message',array('message'=>'Silahkan Login Terlebih Dahulu','type'=>'error','head'=>'Akses Ditolak'));
+		// 	redirect('login','refresh');
+		// }
 	}
 
 	public function index()
@@ -158,9 +158,9 @@ class Hasil_nuklir extends MX_Controller
 		$keyword=$this->input->post('keyword');
 		$data=$this->M_hasil_nuklir->getMedrecAutoComplete($keyword);
 		array_push($data,(object)array(
-			"MEDREC"=>'NOT',
+			"NO_MEDREC"=>'NOT',
 			"NAMA"=>'FOUND'
 		));
-		echo json_decode($data);
+		echo json_encode($data);
 	}
 }

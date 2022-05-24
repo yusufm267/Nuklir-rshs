@@ -56,18 +56,35 @@ class M_hasil_nuklir extends CI_Model
 
 	public function getMedrecAutoComplete($keyword)
 	{
-		$this->db->distinct();
-		$this->db->select('NO_MEDREC');
-		$this->db->from('NKL_PASIEN_IRJ');
-		if ($keyword!='')
-		{
-			$this->db->like("UPPER(\"MEDREC\")",strtoupper($keyword));
-			$this->db->or_like("UPPER(\"NAMA\")",strtoupper($keyword));
+		if (strlen($keyword)==10) {
+			$this->db->distinct();
+			$this->db->select('NO_MEDREC,NAMA');
+			$this->db->from('NKL_PASIEN_IRJ');
+			if ($keyword!='')
+			{
+				$this->db->like("UPPER(\"NO_MEDREC\")",strtoupper($keyword));
+				$this->db->or_like("UPPER(\"NAMA\")",strtoupper($keyword));
+			} else {
+				$this->db->where("NO_MEDREC",'xxxxx');
+			}
+			$this->db->limit(1,0);
+			return $this->db->get()->result_array();
+
 		} else {
-			$this->db->where("NO_MEDREC",'xxxxx');
-		}
-		$this->db->limit(30,0);
-		return $this->db->get()->result_array();		
+
+			$this->db->distinct();
+			$this->db->select('NO_IPD as NO_MEDREC,NAMARI as NAMA');
+			$this->db->from('NKL_PASIEN_IRI');
+			if ($keyword!='')
+			{
+				$this->db->like("UPPER(\"NO_IPD\")",strtoupper($keyword));
+				$this->db->or_like("UPPER(\"NAMARI\")",strtoupper($keyword));
+			} else {
+				$this->db->where("NO_IPD",'xxxxx');
+			}
+			$this->db->limit(1,0);
+			return $this->db->get()->result_array();
+			}	
 	}
 
 	public function cek_medrec($medrec)

@@ -8,7 +8,7 @@
 				<div class="form-group">
 					<label>NO MEDREC</label>
 					<input class="form-control" name="medrec" placeholder="NO MEDREC" id="medrec" autocomplete="off">
-									<ul class="dropdown-menu txtnik" style="margin-top:-90px;margin-left:17px;margin-right:0px;" role="menu" aria-labelledby="dropdownMenu"  id="DropdownMedrec"></ul>
+					<ul class="dropdown-menu txtnik" style="margin-top: 800px;margin-left:10px;margin-right:0px;padding-left:10px;padding-right:10px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownMedrec"></ul>
 				</div>
 			</div>
 			<div class="col-lg-6 col-md-6">
@@ -39,6 +39,7 @@
 <script>
 $("#medrec").keyup(function() {
 	var base_url='<?=base_url()?>';
+	// alert('test');abc
 	$.ajax({
 		type: "POST",
 		url: base_url+"Hasil_nuklir/getMedrecAutoComplete",
@@ -58,20 +59,20 @@ $("#medrec").keyup(function() {
 
 			$.each(data, function(key,value){
 				if (data.length >= 0)
-					$('#DropdownMedrec').append('<li role="displayCountries"><a role="menuitem" dropdownCountryli" class="dropdownlivalue">' + value['MEDREC'] +'---'+value['NAMA']+'</a></li>');
+					$('#DropdownMedrec').append('<li role="displayCountries"><a role="menuitem" dropdownCountryli" class="dropdownlivalue">' + value['NO_MEDREC'] +' --- '+value['NAMA']+'</a></li>');
 			});
 		}
 	});
 });
 
 $('ul.txtnik').on('click','li a',function(){
-	if ($(this).text()!='NOT---FOUND')
+	if ($(this).text()!='NOT FOUND')
 	{
 		var res=$(this).text().split('---');
 		medrec=typeof res[0]!='undefined'?res[0]:'';
 		$('#medrec').val(medrec);
 		nama=typeof res[1]!='undefined'?res[1]:'';
-		$('#nama').val(medrec);
+		$('#nama').val(nama);
 
 		var $td = $(this).closest('li').children('a');
 	}else{
