@@ -45,6 +45,7 @@ class Login extends MX_Controller
 						$this->session->set_userdata('nip',$value->NIP);
 						$this->session->set_userdata('nm_pegawai',$value->NM_PEGAWAI);
 						$this->session->set_userdata('akses',$value->AKSES);
+						$this->session->set_userdata('alias',$value->ALIAS);
 
 
 						if ($this->session->userdata('akses')=="1" OR

@@ -67,7 +67,7 @@ class M_hasil_nuklir extends CI_Model
 			} else {
 				$this->db->where("NO_MEDREC",'xxxxx');
 			}
-			$this->db->limit(1,0);
+			$this->db->limit(5,0);
 			return $this->db->get()->result_array();
 
 		} else {
@@ -82,7 +82,7 @@ class M_hasil_nuklir extends CI_Model
 			} else {
 				$this->db->where("NO_IPD",'xxxxx');
 			}
-			$this->db->limit(1,0);
+			$this->db->limit(5,0);
 			return $this->db->get()->result_array();
 			}	
 	}
