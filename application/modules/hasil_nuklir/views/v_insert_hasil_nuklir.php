@@ -15,7 +15,7 @@
 			<div class="col-lg-6 col-md-6">
 				<div class="form-group">
 					<label>NO MEDREC</label>
-					<input class="form-control" name="medrec" placeholder="NO MEDREC" id="medrec" autocomplete="off">
+					<input type="number" class="form-control" name="medrec" placeholder="NO MEDREC" id="medrec" autocomplete="off">
 					<ul class="dropdown-menu txtnik" style="margin-top: -85px;margin-left:10px;margin-right:0px;padding-left:10px;padding-right:10px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownMedrec"></ul>
 				</div>
 			</div>
@@ -27,7 +27,7 @@
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>TANGGAL KUNJUNGAN</label>
-				<input type="text" class="form-control" value="<?php echo date('Y-m-d')?>" name="" placeholder="TANGGAL KUNJUNGAN">
+				<input type="date" class="form-control" value="<?php echo date('Y-m-d')?>" name="" placeholder="TANGGAL KUNJUNGAN" id="tanggal_kunjungan">
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>DOKTER PENGIRIM</label>
@@ -50,6 +50,16 @@
 				<a href="<?php echo base_url(). 'dashboard/'?>" type="button" id="btn_to_action" class="btn btn-danger">Back</a>
 			</div>
 	</div>
+</div>
+
+<div class="card card-outline card-primary">
+	<div class="card-header">
+		<h3 class="card-title"> Hasil Pemeriksaan </h3>
+	</div>
+	<div class="card-body">
+		<div id="content-pemeriksaan"></div>
+	</div>
+	
 </div>
 
 <script>
@@ -84,7 +94,7 @@ $("#medrec").keyup(function() {
 $('ul.txtnik').on('click','li a',function(){
 	if ($(this).text()!='NOT FOUND')
 	{
-		var res=$(this).text().split('-');
+		var res=$(this).text().split(' - ');
 		medrec=typeof res[0]!='undefined'?res[0]:'';
 		$('#medrec').val(medrec);
 		nama=typeof res[1]!='undefined'?res[1]:'';
@@ -95,6 +105,33 @@ $('ul.txtnik').on('click','li a',function(){
 
 	}
 	$('#DropdownMedrec').hide();
+});
+
+$('#tanggal_kunjungan').change(function(e) {
+	let medrec = $('#medrec').val();
+	let nama = $('#nama').val();
+	let tanggal = $(this).val();
+
+	let url = "<?=base_url()?>hasil_nuklir/getHasilPemeriksaan";
+	url = url + "?medrec=" + medrec + "&tanggal=" + tanggal;
+
+	console.log(url);
+
+	
+	if (medrec == "" || nama == "" || tanggal == "") {
+		alert('kolom No Medrec, Nama Pasien dan Tanggal Kunjungan harus diisi !');
+		return
+	}
+
+
+	$("#content-pemeriksaan").load(url, function(response,status, http){
+        if(status == "success")
+            alert("Content loaded successfully!");
+        if(status == "error")
+            alert("Error: " + http.status + ": " 
+                                           + http.statusText);
+    });
+
 });
 
 </script>

@@ -92,4 +92,59 @@ class M_hasil_nuklir extends CI_Model
 		$this->db->where('NO_MEDREC',$medrec);
 		return $this->db->get('NKL_PASIEN_IRJ')->row();
 	}
+
+	public function getHasilNuklirIRI($tanggal, $medrec)
+    {
+    	$tanggal = date('d-M-y', strtotime($tanggal));
+        // $query = $this->db->query("CALL hasil_nuk_iri('".$tanggal."', '".$medrec."')");
+
+   //      $pelayananIri = $this->db->query("
+   //      	select 
+			// NO_IPD, ID_JNS_LAYANAN, TGL_LAYANAN from NKL_PELAYANAN_IRI
+			// WHERE TGL_LAYANAN = '".$tanggal."' and NO_IPD = '".$medrec."' and ID_JNS_LAYANAN like 'LNIV%'
+   //      ")->result();
+		
+    	$this->db->from('NKL_PELAYANAN_IRI');
+    	$this->db->where('TGL_LAYANAN', $tanggal);
+    	$this->db->where('NO_IPD', $medrec);
+    	$pelayananIri = $this->db->get()->result();
+
+        
+     	if (count($pelayananIri)) {
+     		foreach ($pelayananIri as $iri) {
+     			$this->db->from('NKL_PEMERIKSAAN_NUK');
+		    	$this->db->where('TGL_KUNJUNGAN', $iri->TGL_LAYANAN);
+		    	$this->db->where('ID_JNS_LAYANAN', $iri->ID_JNS_LAYANAN);
+		    	$this->db->where('NO_MEDREC', $iri->NO_IPD);
+		    	$check =  $this->db->get()->row();
+
+     			if (@$check->NO_MEDREC == null) {
+     				$this->db->insert('NKL_PEMERIKSAAN_NUK', [
+	     				'NO_MEDREC' => $iri->NO_IPD,
+	     				'ID_JNS_LAYANAN' => $iri->ID_JNS_LAYANAN,
+	     				'TGL_KUNJUNGAN' => $iri->TGL_LAYANAN,
+	     			]);
+     			}
+     		}
+     	}
+
+		// $query="select * from NKL_PEMERIKSAAN_NUK WHERE TGL_KUNJUNGAN = '".$tanggal."' AND NO_MEDREC = '".$medrec."' ";
+		// return $this->db->query($query)->result();
+
+		$this->db->from('NKL_PEMERIKSAAN_NUK');
+    	$this->db->where('TGL_KUNJUNGAN', $tanggal);
+    	$this->db->where('NO_MEDREC', $medrec);
+    	return $this->db->get()->result();
+
+
+
+
+    }
+
+    public function getHasilNuklirIRJ($tanggal, $medrec)
+    {
+    	$tanggal = date('d-M-y', strtotime($tanggal));
+        $query = $this->db->query("CALL hasil_nuk_irj('".$tanggal."', '".$medrec."')");
+        return $query->result();
+    }
 }

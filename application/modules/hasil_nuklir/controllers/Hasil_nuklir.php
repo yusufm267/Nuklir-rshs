@@ -163,4 +163,28 @@ class Hasil_nuklir extends MX_Controller
 		));
 		echo json_encode($data);
 	}
+
+	public function getHasilPemeriksaan()
+	{
+		$medrec = $this->input->get('medrec');
+		$nama = $this->input->get('nama');
+		$tanggal = $this->input->get('tanggal');
+
+		$hasil = [];
+
+		if (strlen($medrec)==10) { // Rawat Jalan
+			$hasil = $this->M_hasil_nuklir->getHasilNuklirIRJ($tanggal, $medrec);
+			var_dump($hasil);
+
+		}else if (strlen($medrec)==8) { //Rawat Inap
+			$hasil = $this->M_hasil_nuklir->getHasilNuklirIRI($tanggal, $medrec);
+
+			$this->load->view('hasil_pemeriksaan', ['hasil' => $hasil]);
+			return;
+		}
+
+		var_dump(1);
+
+	
+	}
 }
