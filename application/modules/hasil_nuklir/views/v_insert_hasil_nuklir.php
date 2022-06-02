@@ -2,6 +2,7 @@
 	<div class="card-header">
 		<h3 class="card-title"><?=$subtitle?></h3>
 	</div>
+	<form method="POST" action="">
 	<div class="card-body">
 		<div class="row">
 			<div class=" col-lg-12 col-md-12">
@@ -45,11 +46,12 @@
 	</div>
 	<div class="card-footer">
 		<button type="submit" class="btn btn-primary">Insert Data</button>
-		<button type="reset" class="btn btn-default">Reset</button>
+		<button type="reset" value="Reset" class="btn btn-default">Reset</button>
 			<div class="float-right">
 				<a href="<?php echo base_url(). 'dashboard/'?>" type="button" id="btn_to_action" class="btn btn-danger">Back</a>
 			</div>
 	</div>
+	</form>
 </div>
 
 <div class="card card-outline card-primary">
@@ -126,7 +128,7 @@ $('#tanggal_kunjungan').change(function(e) {
 
 	$("#content-pemeriksaan").load(url, function(response,status, http){
         if(status == "success")
-            alert("Content loaded successfully!");
+            alert("Data Berhasil Ditampilkan!");
         if(status == "error")
             alert("Error: " + http.status + ": " 
                                            + http.statusText);

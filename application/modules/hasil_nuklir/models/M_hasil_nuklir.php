@@ -135,16 +135,38 @@ class M_hasil_nuklir extends CI_Model
     	$this->db->where('TGL_KUNJUNGAN', $tanggal);
     	$this->db->where('NO_MEDREC', $medrec);
     	return $this->db->get()->result();
-
-
-
-
     }
 
     public function getHasilNuklirIRJ($tanggal, $medrec)
     {
     	$tanggal = date('d-M-y', strtotime($tanggal));
-        $query = $this->db->query("CALL hasil_nuk_irj('".$tanggal."', '".$medrec."')");
-        return $query->result();
+
+    	$this->db->from('NKL_PELAYANAN_POLI');
+    	$this->db->where('TGL_KUNJUNGAN',$tanggal);
+    	$this->db->where('NO_MEDREC',$medrec);
+    	$pelayananIrj = $this->db->get()->result();
+
+    	if (count($pelayananIrj)) {
+    		foreach ($pelayananIrj as $irj) {
+    			$this->db->from('NKL_PEMERIKSAAN_NUK');
+    			$this->db->where('TGL_KUNJUNGAN', $irj->TGL_KUNJUNGAN);
+    			$this->db->where('ID_JNS_LAYANAN', $irj->ID_JNS_LAYANAN);
+    			$this->db->where('NO_MEDREC', $irj->NO_MEDREC);
+    			$check = $this->db->get()->row();
+
+    			if (@$check->NO_MEDREC == NULL) {
+    				$this->db->insert('NKL_PEMERIKSAAN_NUK', [
+    					'NO_MEDREC' => $irj->NO_MEDREC,
+    					'ID_JNS_LAYANAN' => $irj->ID_JNS_LAYANAN,
+    					'TGL_KUNJUNGAN' => $irj->TGL_KUNJUNGAN
+    				]);
+    			}
+    		}
+    	}
+
+    	$this->db->from('NKL_PEMERIKSAAN_NUK');
+    	$this->db->where('TGL_KUNJUNGAN', $tanggal);
+    	$this->db->where('NO_MEDREC', $medrec);
+    	return $this->db->get()->result();
     }
 }
