@@ -31,8 +31,9 @@ class Users extends MX_Controller {
 		$data['body']='v_users';
 
 		$data['data_users_nuklir'] = $this->M_users->get_data();
-		// var_dump($data);
-		// exit();
+		// $data['user_login'] = $this->session->userdata();
+		// var_dump($data['data_users_nuklir']);
+		// die;
 		$this->load->view('template',$data);
 	}
 
@@ -168,6 +169,25 @@ class Users extends MX_Controller {
 		$this->M_users->delete_data($NIP);
 		$this->session->set_flashdata('message',array('message'=>'Data Berhasil Dihapus','type'=>'success','head'=>'Success'));
 		redirect('users','refresh');
+	}
+
+	public function profile($NIP)
+	{
+
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='PROFILE';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_user_profile';
+
+		$data['data_profile'] = $this->M_users->get_data_profile($NIP);
+		// var_dump($data);
+		// exit;
+
+
+		$this->load->view('template', $data);
 	}
 	
 	// public function insert()

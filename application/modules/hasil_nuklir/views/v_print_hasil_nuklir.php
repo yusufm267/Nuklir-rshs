@@ -1,4 +1,4 @@
-<div class="card card-outline card-primary">
+v_print_hasil_nuklir<div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title"><?=$subtitle?></h3>
 	</div>
@@ -13,29 +13,17 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3">
+			<div class="col-lg-6 col-md-6">
 				<div class="form-group">
 					<label>NO MEDREC</label>
 					<input type="number" class="form-control" name="medrec" placeholder="NO MEDREC" id="medrec" autocomplete="off">
 					<ul class="dropdown-menu txtnik" style="margin-top: -85px;margin-left:10px;margin-right:0px;padding-left:10px;padding-right:10px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownMedrec"></ul>
 				</div>
 			</div>
-			<div class="col-lg-3 col-md-3">
+			<div class="col-lg-6 col-md-6">
 				<div class="form-group">
 					<label>NAMA PASIEN</label>
 					<input type="text" class="form-control" name="nama" placeholder="NAMA PASIEN" id="nama">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3">
-				<div class="form-group">
-					<label>UMUR PASIEN</label>
-					<input type="text" class="form-control" name="umur" placeholder="UMUR PASIEN" id="umur">
-				</div>
-			</div>
-			<div class="col-lg-3 col-md-3">
-				<div class="form-group">
-					<label>TANGGAL LAHIR PASIEN</label>
-					<input type="text" class="form-control" name="tgl_lahir" placeholder="TANGGAL LAHIR" id="tgl_lahir" readonly>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3">
@@ -99,7 +87,7 @@ $("#medrec").keyup(function() {
 
 			$.each(data, function(key,value){
 				if (data.length >= 0)
-					$('#DropdownMedrec').append('<li role="displayCountries"><a role="menuitem" dropdownCountryli" class="dropdownlivalue" style="color:black;">' + value['NO_MEDREC'] +' - '+value['NAMA']+' - '+value['UMUR']+' - '+value['TGL_LAHIR']+'</a></li>');
+					$('#DropdownMedrec').append('<li role="displayCountries"><a role="menuitem" dropdownCountryli" class="dropdownlivalue" style="color:black;">' + value['NO_MEDREC'] +' - '+value['NAMA']+'</a></li>');
 			});
 		}
 	});
@@ -113,10 +101,6 @@ $('ul.txtnik').on('click','li a',function(){
 		$('#medrec').val(medrec);
 		nama=typeof res[1]!='undefined'?res[1]:'';
 		$('#nama').val(nama);
-		umur=typeof res[2]!='undefined'?res[2]:'';
-		$('#umur').val(umur);
-		tgl_lahir=typeof res[3]!='undefined'?res[3]:'';
-		$('#tgl_lahir').val(tgl_lahir);
 
 		var $td = $(this).closest('li').children('a');
 	}else{

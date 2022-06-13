@@ -31,6 +31,8 @@ class M_dashboard extends CI_Model {
             select 'Jenis Hasil Nuklir' as nama, count(*) as total,'Jenis Hasil Nuklir' from nkl_jenis_hasil_nuk
             union all
             select 'User Nuklir' as nama,count(*) as total, 'User Login Nuklir' from nkl_user_login_nuklir where aktif='1'
+            union all
+            select 'Pemeriksaan Nuklir' as nama, count(*) as total, 'Pemeriksaan Nuklir' from nkl_pemeriksaan_nuk where tgl_kunjungan like '%JUN-22'
         ";
         return $this->db->query($query)->result();
     }

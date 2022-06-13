@@ -55,7 +55,7 @@
               <div class="inner">
                 <h4><?=$list_data[2]->NAMA?></h4>
 
-                <p><?=$list_data[2]->TOTAL?> Hasil</p>
+                <p><?=$list_data[2]->TOTAL?>Jenis Hasil</p>
               </div>
               <div class="icon">
                 <i class="ion ion-nuclear"></i>
@@ -68,9 +68,9 @@
             <!-- small box -->
             <div class="small-box bg-danger">
               <div class="inner">
-                <h4>65</h4>
+                <h4><?=$list_data[4]->NAMA?></h4>
 
-                <p>Unique Visitors</p>
+                <p><?=$list_data[4]->TOTAL?> Pemeriksaan</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>

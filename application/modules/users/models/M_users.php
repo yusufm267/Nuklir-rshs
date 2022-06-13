@@ -159,6 +159,18 @@
 			return $this->db->from('NKL_DOKTER_PERIKSA_NUK')->get()->result();
 		}
 
+		public function get_data_profile($NIP)
+		{
+			$query="
+					select a.nip,a.nip2,a.nm_pegawai,a.password,a.real_password,b.akses,b.aktif,b.status,c.alias,c.f_staff
+					from v_pegawai a 
+					left join nkl_user_login_nuklir b on a.nip=b.nip
+					left join NKL_DOKTER_PERIKSA_NUK c on c.ID_DOKTER2=a.nip
+					where a.nip='".$NIP."'
+					";
+			return $this->db->query($query)->row();
+		}
+
 	}
 
 	

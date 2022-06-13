@@ -58,7 +58,7 @@ class M_hasil_nuklir extends CI_Model
 	{
 		if (strlen($keyword)==10) {
 			$this->db->distinct();
-			$this->db->select('NO_MEDREC,NAMA');
+			$this->db->select('NO_MEDREC,NAMA,UMUR,TGL_LAHIR');
 			$this->db->from('NKL_PASIEN_IRJ');
 			if ($keyword!='')
 			{
@@ -73,7 +73,7 @@ class M_hasil_nuklir extends CI_Model
 		} else {
 
 			$this->db->distinct();
-			$this->db->select('NO_IPD as NO_MEDREC,NAMARI as NAMA');
+			$this->db->select('NO_IPD as NO_MEDREC,NAMARI as NAMA,UMURRI as UMUR,TGLLAHIRRI as TGL_LAHIR');
 			$this->db->from('NKL_PASIEN_IRI');
 			if ($keyword!='')
 			{

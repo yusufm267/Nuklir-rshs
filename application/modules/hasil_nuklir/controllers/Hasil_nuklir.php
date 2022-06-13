@@ -159,7 +159,9 @@ class Hasil_nuklir extends MX_Controller
 		$data=$this->M_hasil_nuklir->getMedrecAutoComplete($keyword);
 		array_push($data,(object)array(
 			"NO_MEDREC"=>'NOT',
-			"NAMA"=>'FOUND'
+			"NAMA"=>'FOUND',
+			"UMUR"=>'',
+			"TGL_LAHIR"=>''
 		));
 		echo json_encode($data);
 	}
