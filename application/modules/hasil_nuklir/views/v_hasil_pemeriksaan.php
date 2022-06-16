@@ -13,8 +13,8 @@
 		<?php foreach($hasil as $hs) { ?>
 			<tr>
 				<td><?= $hs->ID_JNS_LAYANAN ?></td>
-				<td>---</td>
-				<td>---</td>
+				<td><?= $hs->NM_LAYANAN?></td>
+				<td><?= $hs->KELOMPOK_NUK?></td>
 				<td><?= $hs->NM_HASIL ?></td>
 				<td><?= $hs->KADAR_HASIL ?></td>
 				<td><?= $hs->JENIS_RF ?></td>

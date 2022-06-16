@@ -48,7 +48,7 @@
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>DOKTER PERIKSA</label>
-				<input type="text" class="form-control" value="<?php echo $this->session->userdata('nm_pegawai')?>" name="dokter_periksa" placeholder="DOKTER PERIKSA" readonly>
+				<input type="text" class="form-control" value="" name="dokter_periksa" placeholder="DOKTER PERIKSA" readonly>
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>PENGETIK HASIL</label>
@@ -56,15 +56,50 @@
 			</div>
 		</div>
 	</div>
-	<div class="card-footer">
+	<!-- <div class="card-footer">
 		<button type="submit" class="btn btn-primary">Insert Data</button>
 		<button type="reset" value="Reset" class="btn btn-default">Reset</button>
 			<div class="float-right">
 				<a href="<?php echo base_url(). 'dashboard/'?>" type="button" id="btn_to_action" class="btn btn-danger">Back</a>
 			</div>
-	</div>
-	</form>
+	</div> -->
+	<!-- </form> -->
 </div>
+
+<div class="card card-outline card-danger">
+	<div class="card-header">
+		<h3 class="card-title">HASIL PEMERIKSAAN NUKLIR</h3>
+	</div>
+
+	<div class="card-body">
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<table class="table-bordered table-striped" id="main_table" style="width:100%">
+					<thead>
+						<th class="bg-danger text-center" colspan="3">PEMERIKSAAN</th>
+						<th class="bg-danger text-center">NAMA HASIL</th>
+						<th class="bg-danger text-center">KADAR HASIL</th>
+						<th class="bg-danger text-center">KADAR NORMAL</th>
+						<th class="bg-danger text-center">JENIS RF</th>
+						<th class="bg-danger text-center">DOSIS RF</th>
+						<th class="bg-danger text-center">#</th>
+					</thead>
+					<tbody></tbody>
+				</table>
+			</div>
+		</div> 
+		<div class="float-right">
+			<button type="button" id="btn_add" class="btn btn-success btn-sm float-sm-right"><i class="fas fa-plus"></i></button>
+		</div>
+	</div>
+
+	<div class="card-footer">
+		<button type="submit" class="btn btn-primary">Insert</button>
+		<button type="reset" class="btn btn-default">Reset</button>
+	</div>
+</div>
+</form>
+
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
@@ -73,7 +108,6 @@
 	<div class="card-body">
 		<div id="content-pemeriksaan"></div>
 	</div>
-	
 </div>
 
 <script>
@@ -151,5 +185,66 @@ $('#tanggal_kunjungan').change(function(e) {
     });
 
 });
+
+
+let no=1;
+
+$("#btn_add").click(function() {
+	newRowContent='<tr>'+
+					// '<td class="text-center">'+no+'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td>'+
+						'<div class="input-group">'+
+							'<input type="text" class="form-control" name="" auctocomplete="off" />'+
+						'</div>'+
+					'</td>'+
+					'<td><button type="button" onClick="deleteRow(this)" class="btn btn-danger btn-sm float-sm-right"><i class="fas fa-trash"> </i></button></td>'+
+
+				  '</tr>';
+jQuery("#main_table tbody").append(newRowContent);
+
+	no++;
+});
+
+function deleteRow(r)
+{
+	let i = r.parentNode.parentNode.rowIndex;
+	document.getElementById("main_table").deleteRow(i);
+	console.log(i);
+}
 
 </script>

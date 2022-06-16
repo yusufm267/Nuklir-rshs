@@ -131,9 +131,12 @@ class M_hasil_nuklir extends CI_Model
 		// $query="select * from NKL_PEMERIKSAAN_NUK WHERE TGL_KUNJUNGAN = '".$tanggal."' AND NO_MEDREC = '".$medrec."' ";
 		// return $this->db->query($query)->result();
 
-		$this->db->from('NKL_PEMERIKSAAN_NUK');
-    	$this->db->where('TGL_KUNJUNGAN', $tanggal);
-    	$this->db->where('NO_MEDREC', $medrec);
+     	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC');
+		$this->db->from('NKL_JENIS_PELAYANAN a');
+		$this->db->join('NKL_PEMERIKSAAN_NUK b','a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN','left');
+    	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
+    	$this->db->where('b.NO_MEDREC', $medrec);
+    	$this->db->like('b.ID_JNS_LAYANAN','LNIV', 'after');
     	return $this->db->get()->result();
     }
 
@@ -144,6 +147,7 @@ class M_hasil_nuklir extends CI_Model
     	$this->db->from('NKL_PELAYANAN_POLI');
     	$this->db->where('TGL_KUNJUNGAN',$tanggal);
     	$this->db->where('NO_MEDREC',$medrec);
+    	$this->db->like('ID_JNS_LAYANAN','LNIV','after');
     	$pelayananIrj = $this->db->get()->result();
 
     	if (count($pelayananIrj)) {
@@ -164,9 +168,54 @@ class M_hasil_nuklir extends CI_Model
     		}
     	}
 
+    	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC');
+    	$this->db->from('NKL_JENIS_PELAYANAN a');
+    	$this->db->join('NKL_PEMERIKSAAN_NUK b', 'a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN', 'left');
+    	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
+    	$this->db->where('b.NO_MEDREC', $medrec);
+    	$this->db->like('b.ID_JNS_LAYANAN','LNIV','after');
+    	return $this->db->get()->result();
+    }
+
+
+    // public function getHasilNuklirIRJ($tanggal, $medrec)
+    // {
+    // 	$tanggal = date('d-M-y', strtotime($tanggal));
+
+    // 	$this->db->from('NKL_PELAYANAN_POLI');
+    // 	$this->db->where('TGL_KUNJUNGAN',$tanggal);
+    // 	$this->db->where('NO_MEDREC',$medrec);
+    // 	$pelayananIrj = $this->db->get()->result();
+
+    // 	if (count($pelayananIrj)) {
+    // 		foreach ($pelayananIrj as $irj) {
+    // 			$this->db->from('NKL_PEMERIKSAAN_NUK');
+    // 			$this->db->where('TGL_KUNJUNGAN', $irj->TGL_KUNJUNGAN);
+    // 			$this->db->where('ID_JNS_LAYANAN', $irj->ID_JNS_LAYANAN);
+    // 			$this->db->where('NO_MEDREC', $irj->NO_MEDREC);
+    // 			$check = $this->db->get()->row();
+
+    // 			if (@$check->NO_MEDREC == NULL) {
+    // 				$this->db->insert('NKL_PEMERIKSAAN_NUK', [
+    // 					'NO_MEDREC' => $irj->NO_MEDREC,
+    // 					'ID_JNS_LAYANAN' => $irj->ID_JNS_LAYANAN,
+    // 					'TGL_KUNJUNGAN' => $irj->TGL_KUNJUNGAN
+    // 				]);
+    // 			}
+    // 		}
+    // 	}
+
+    // 	$this->db->from('NKL_PEMERIKSAAN_NUK');
+    // 	$this->db->where('TGL_KUNJUNGAN', $tanggal);
+    // 	$this->db->where('NO_MEDREC', $medrec);
+    // 	$this->db->like('ID_JNS_LAYANAN', 'LNIV','after');
+    // 	return $this->db->get()->result();
+    // }
+
+    public function getPemeriksaanNuklir()
+    {
     	$this->db->from('NKL_PEMERIKSAAN_NUK');
-    	$this->db->where('TGL_KUNJUNGAN', $tanggal);
-    	$this->db->where('NO_MEDREC', $medrec);
+    	$this->db->limit(1,2);
     	return $this->db->get()->result();
     }
 }

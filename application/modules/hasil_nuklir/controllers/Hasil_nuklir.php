@@ -158,10 +158,10 @@ class Hasil_nuklir extends MX_Controller
 		$keyword=$this->input->post('keyword');
 		$data=$this->M_hasil_nuklir->getMedrecAutoComplete($keyword);
 		array_push($data,(object)array(
-			"NO_MEDREC"=>'NOT',
-			"NAMA"=>'FOUND',
-			"UMUR"=>'',
-			"TGL_LAHIR"=>''
+			"NO_MEDREC"=>'MEDREC',
+			"NAMA"=>'NAMA',
+			"UMUR"=>'UMUR',
+			"TGL_LAHIR"=>'LAHIR'
 		));
 		echo json_encode($data);
 	}
@@ -186,5 +186,22 @@ class Hasil_nuklir extends MX_Controller
 			$this->load->view('v_hasil_pemeriksaan', ['hasil' => $hasil]);
 			return;
 		}
+	}
+
+	public function pemeriksaan_nuklir()
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='DATA HASIL NUKLIR';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_hasil_nuklir';
+
+		$data['data_pemeriksaan_nuklir'] = $this->M_hasil_nuklir->getPemeriksaanNuklir();
+		var_dump($data);
+		exit;
+
+		$this->load->view('template', $data);
 	}
 }
