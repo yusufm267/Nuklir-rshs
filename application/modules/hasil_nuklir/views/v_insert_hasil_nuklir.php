@@ -103,7 +103,7 @@
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
-		<h3 class="card-title"> Hasil Pemeriksaan </h3>
+		<h3 class="card-title">Hasil Pemeriksaan</h3>
 	</div>
 	<div class="card-body">
 		<div id="content-pemeriksaan"></div>
@@ -178,7 +178,7 @@ $('#tanggal_kunjungan').change(function(e) {
 
 	$("#content-pemeriksaan").load(url, function(response,status, http){
         if(status == "success")
-            alert("Data Berhasil Ditampilkan!");
+            alert("Periksa Data Pada Tabel Dibawah");
         if(status == "error")
             alert("Error: " + http.status + ": " 
                                            + http.statusText);

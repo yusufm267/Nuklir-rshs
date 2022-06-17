@@ -103,13 +103,13 @@
               <li class="nav-item">
                 <a href="<?php echo base_url("/hasil_nuklir/") ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lihat Data Hasil Nuklir</p>
+                  <p>Lihat Data Jenis Hasil Nuklir</p>
                 </a>
               </li>
             </ul>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="<?php echo base_url("")?>" class="nav-link">
+                <a href="<?php echo base_url("/hasil_nuklir/pemeriksaan_nuklir")?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Lihat Data Pemeriksaan Nuklir</p>
                 </a>

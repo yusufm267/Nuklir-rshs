@@ -17,8 +17,8 @@
 				<td><?= $hs->KELOMPOK_NUK?></td>
 				<td><?= $hs->NM_HASIL ?></td>
 				<td><?= $hs->KADAR_HASIL ?></td>
+				<td></td>
 				<td><?= $hs->JENIS_RF ?></td>
-				<td>---</td>
 				<td><?= $hs->DOSIS_RF ?></td>
 			</tr>
 

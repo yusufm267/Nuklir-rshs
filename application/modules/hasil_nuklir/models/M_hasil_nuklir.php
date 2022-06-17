@@ -156,13 +156,17 @@ class M_hasil_nuklir extends CI_Model
     			$this->db->where('TGL_KUNJUNGAN', $irj->TGL_KUNJUNGAN);
     			$this->db->where('ID_JNS_LAYANAN', $irj->ID_JNS_LAYANAN);
     			$this->db->where('NO_MEDREC', $irj->NO_MEDREC);
+    			$this->db->where('NM_HASIL', $irj->NM_HASIL);
+    			$this->db->where('KADAR_HASIL', $irj->KADAR_HASIL);
     			$check = $this->db->get()->row();
 
     			if (@$check->NO_MEDREC == NULL) {
     				$this->db->insert('NKL_PEMERIKSAAN_NUK', [
     					'NO_MEDREC' => $irj->NO_MEDREC,
     					'ID_JNS_LAYANAN' => $irj->ID_JNS_LAYANAN,
-    					'TGL_KUNJUNGAN' => $irj->TGL_KUNJUNGAN
+    					'TGL_KUNJUNGAN' => $irj->TGL_KUNJUNGAN,
+    					'NM_HASIL' => $irj->NM_HASIL,
+    					'KADAR_HASIL' => $irj->KADAR_HASIL
     				]);
     			}
     		}
@@ -215,7 +219,7 @@ class M_hasil_nuklir extends CI_Model
     public function getPemeriksaanNuklir()
     {
     	$this->db->from('NKL_PEMERIKSAAN_NUK');
-    	$this->db->limit(1,2);
+    	$this->db->limit(1000);
     	return $this->db->get()->result();
     }
 }

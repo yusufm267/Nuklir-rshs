@@ -191,16 +191,16 @@ class Hasil_nuklir extends MX_Controller
 	public function pemeriksaan_nuklir()
 	{
 		$data['title']='Kelola Nuklir';
-		$data['subtitle']='DATA HASIL NUKLIR';
+		$data['subtitle']='DATA PEMERIKSAAN KEDOKTERAN NUKLIR';
 		$data['header']='header/header';
 		$data['navbar']='navbar/navbar';
 		$data['sidebar']='sidebar/sidebar';
 		$data['footer']='footer/footer';
-		$data['body']='v_hasil_nuklir';
+		$data['body']='v_pemeriksaan_nuklir';
 
 		$data['data_pemeriksaan_nuklir'] = $this->M_hasil_nuklir->getPemeriksaanNuklir();
-		var_dump($data);
-		exit;
+		// var_dump($data);
+		// exit;
 
 		$this->load->view('template', $data);
 	}
