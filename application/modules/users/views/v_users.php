@@ -19,18 +19,18 @@
 	<table class="table table-bordered table-striped" id="datatable1" style="width:100%" >
         <thead>
         <tr>
-      <th class="bg-danger">NO</th>
-			<th class="bg-danger">NIP</th>
-			<th class="bg-danger">NIP2</th>
-			<th class="bg-danger">NAMA PEGAWAI</th>
-      <th class="bg-danger">ALIAS</th>
+      <th class="bg-default">NO</th>
+			<th class="bg-default">NIP</th>
+			<th class="bg-default">NIP2</th>
+			<th class="bg-default">NAMA PEGAWAI</th>
+      <th class="bg-default">ALIAS</th>
       <!-- <th class="bg-danger">PASSWORD</th> -->
       <!-- <th class="bg-danger">REAL PASSWORD</th> -->
-      <th class="bg-danger">AKSES</th>
-      <th class="bg-danger">AKTIF</th>
-      <th class="bg-danger">STAF</th>
-      <th class="bg-danger">STATUS</th>
-      <th class="bg-danger">ACTION</th>
+      <th class="bg-default">AKSES</th>
+      <th class="bg-default">AKTIF</th>
+      <th class="bg-default">STAF</th>
+      <th class="bg-default">STATUS</th>
+      <th class="bg-default">ACTION</th>
 		</tr>
          </thead>
          <tbody> 

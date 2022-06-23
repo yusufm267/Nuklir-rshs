@@ -15,11 +15,21 @@
 				<td><?= $hs->ID_JNS_LAYANAN ?></td>
 				<td><?= $hs->NM_LAYANAN?></td>
 				<td><?= $hs->KELOMPOK_NUK?></td>
-				<td><?= $hs->NM_HASIL ?></td>
-				<td><?= $hs->KADAR_HASIL ?></td>
-				<td></td>
-				<td><?= $hs->JENIS_RF ?></td>
-				<td><?= $hs->DOSIS_RF ?></td>
+				<td>
+					<input type="text" name="nm_hasil" class="form-control" value="<?= $hs->NM_HASIL ?>">
+				</td>
+				<td>
+					<input type="text" name="kadar_hasil" class="form-control" value="<?= $hs->KADAR_HASIL ?>">
+				</td>
+				<td>
+					<input type="text" name="kadar_normal" class="form-control" value="">
+				</td>
+				<td>
+					<input type="text" name="jenis_rf" class="form-control" value="<?= $hs->JENIS_RF ?>">	
+				</td>
+				<td>
+					<input type="text" name="dosis_rf" class="form-control" value="<?= $hs->DOSIS_RF ?>">
+				</td>
 			</tr>
 
 		<?php } ?>

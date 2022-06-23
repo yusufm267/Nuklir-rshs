@@ -218,8 +218,17 @@ class M_hasil_nuklir extends CI_Model
 
     public function getPemeriksaanNuklir()
     {
-    	$this->db->from('NKL_PEMERIKSAAN_NUK');
-    	$this->db->limit(1000);
+    	$this->db->select('a.*,b.NAMA,c.NAMARI');
+    	$this->db->from('NKL_PEMERIKSAAN_NUK a');
+    	$this->db->join('NKL_PASIEN_IRJ b', 'a.NO_MEDREC = b.NO_MEDREC', 'left');
+    	$this->db->join('NKL_PASIEN_IRI c', 'a.NO_MEDREC = c.NO_IPD', 'left');
+    	$this->db->like('TGL_KUNJUNGAN','-22','before');
+    	$this->db->limit(1500);
     	return $this->db->get()->result();
+    }
+
+    public function insertPemeriksaanNuklir($data)
+    {
+    	$this->db->insert('NKL_PEMERIKSAAN_NUK',$data);
     }
 }

@@ -204,4 +204,26 @@ class Hasil_nuklir extends MX_Controller
 
 		$this->load->view('template', $data);
 	}
+
+	public function insert_pemeriksaan_nuklir()
+	{
+		$NM_HASIL = $this->input->post('nm_hasil');
+		$KADAR_HASIL = $this->input->post('kadar_hasil');
+		$KADAR_NORMAL = $this->input->post('kadar_normal');
+		$JENIS_RF = $this->input->post('jenis_rf');
+		$DOSIS_RF = $this->input->post('dosis_rf');
+
+		$data = array(
+			'NM_HASIL' => $NM_HASIL,
+			'KADAR_HASIL' => $KADAR_HASIL,
+			'KADAR_NORMAL' => $KADAR_NORMAL,
+			'JENIS_RF' => $JENIS_RF,
+			'DOSIS_RF' => $DOSIS_RF
+		);
+
+		$insert = $this->M_hasil_nuklir->insertPemeriksaanNuklir($data);
+		$data = $insert ? ['message' => 'Data Berhasil Disimpan','type'=>'success','head'=>'Success'] : ['message'=>'Data Gagal Disimpan','type'=>'error','head'=>'error'];
+		$this->session->set_flashdata('message',$data);
+		redirect('hasil_nuklir','refresh'); 
+	}
 }

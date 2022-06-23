@@ -1,21 +1,26 @@
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title"><?=$subtitle?></h3>
+		<div class="float-sm-right">
+			<select class="form-control">
+				<option value="">Test1</option>
+			</select>
+		</div>
 	</div>
-
 <div class="card-body">
 	<div class="table-responsive">
 		<table class="table table-bordered table-striped" id="datatable1" style="width:100%">
 			<thead>
 				<tr>
-					<th class="bg-primary">NO</th>
-					<th class="bg-primary">ID JENIS LAYANAN</th>
-					<th class="bg-primary">TANGGAL KUNJUNGAN</th>
-					<th class="bg-primary">NO MEDREC</th>
-					<th class="bg-primary">NAMA HASIL</th>
-					<th class="bg-primary">KADAR HASIL</th>
-					<th class="bg-primary">JENIS RF</th>
-					<th class="bg-primary">DOSIS RF</th>
+					<th class="bg-default">NO</th>
+					<th class="bg-default">ID JENIS LAYANAN</th>
+					<th class="bg-default">TANGGAL KUNJUNGAN</th>
+					<th class="bg-default">NO MEDREC</th>
+					<th class="bg-default">NAMA PASIEN</th>
+					<th class="bg-default">NAMA HASIL</th>
+					<th class="bg-default">KADAR HASIL</th>
+					<th class="bg-default">JENIS RF</th>
+					<th class="bg-default">DOSIS RF</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -27,6 +32,13 @@
 					<td class=""><?=$data->ID_JNS_LAYANAN?></td>
 					<td class=""><?=$data->TGL_KUNJUNGAN?></td>
 					<td class=""><?=$data->NO_MEDREC?></td>
+					<td class="">
+						<?php if (strlen($data->NO_MEDREC)==10) { ?>
+							<?php echo $data->NAMA ?>
+						<?php } else { ?>
+							<?php echo $data->NAMARI ?>
+						<?php }?>
+					</td>
 					<td class=""><?=$data->NM_HASIL?></td>
 					<td class=""><?=$data->KADAR_HASIL?></td>
 					<td class=""><?=$data->JENIS_RF?></td>

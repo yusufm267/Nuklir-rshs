@@ -66,7 +66,7 @@
 	<!-- </form> -->
 </div>
 
-<div class="card card-outline card-danger">
+<!-- <div class="card card-outline card-danger">
 	<div class="card-header">
 		<h3 class="card-title">HASIL PEMERIKSAAN NUKLIR</h3>
 	</div>
@@ -97,7 +97,7 @@
 		<button type="submit" class="btn btn-primary">Insert</button>
 		<button type="reset" class="btn btn-default">Reset</button>
 	</div>
-</div>
+</div> -->
 </form>
 
 
