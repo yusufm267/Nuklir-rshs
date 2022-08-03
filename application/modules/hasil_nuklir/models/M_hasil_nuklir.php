@@ -40,6 +40,12 @@ class M_hasil_nuklir extends CI_Model
 		return $this->db->query($query)->row();
 	}
 
+	public function getJenisHasilPemeriksaan($ID_JENIS)
+	{
+		$query="select * from NKL_JENIS_HASIL_NUK where ID_JENIS= '".$ID_JENIS."' ";
+		return $this->db->query($query)->row();
+	}
+
 	public function update_data($ID_JENIS,$data)
 	{
 		$this->db->where('ID_JENIS',$ID_JENIS);
@@ -230,5 +236,18 @@ class M_hasil_nuklir extends CI_Model
     public function insertPemeriksaanNuklir($data)
     {
     	$this->db->insert('NKL_PEMERIKSAAN_NUK',$data);
+    }
+
+    public function getDetailHasilPemeriksaan($NO_MEDREC)
+    {
+    	$query = "
+    	select a.*,b.nama,b.tgl_lahir,b.umur,b.alamat,c.namari as nama,c.tgllahirri as tgl_lahir,c.umurri as umur,c.alamatri as alamat
+		from nkl_pemeriksaan_nuk a
+		left join nkl_pasien_irj b on a.no_medrec=b.no_medrec
+		left join nkl_pasien_iri c on a.no_medrec=c.no_ipd
+		where a.no_medrec = '".$NO_MEDREC."'
+    	";
+
+    	return $this->db->query($query)->row();
     }
 }

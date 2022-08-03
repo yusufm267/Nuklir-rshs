@@ -22,7 +22,7 @@
 					<input type="text" name="kadar_hasil" class="form-control" value="<?= $hs->KADAR_HASIL ?>">
 				</td>
 				<td>
-					<input type="text" name="kadar_normal" class="form-control" value="">
+					<input type="text" name="kadar_normal" class="form-control" value="" readonly>
 				</td>
 				<td>
 					<input type="text" name="jenis_rf" class="form-control" value="<?= $hs->JENIS_RF ?>">	

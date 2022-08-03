@@ -40,18 +40,6 @@
                   <p>Dashboard Utama</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="./index2.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v2</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
-                </a>
-              </li>
             </ul>
           </li>
           <?php if ($this->session->userdata('akses')=="1") { ?>
@@ -85,6 +73,12 @@
         <?php if ($this->session->userdata('akses')=="1" OR $this->session->userdata('akses')=="2" ) { ?>
           <!-- Start Sidebar Menu Jenis Hasil Nuklir -->
           <li class="nav-header">KELOLA NUKLIR</li>
+          <li class="nav-item">
+            <a href="<?php echo base_url('/laporan/cetak/') ?>" class="nav-link">
+              <i class="nav-icon fas fa-file"></i>
+              <p>Cetak PDF (dummy)</p>
+            </a>
+          </li>
           <li class="nav-item">
             <a href="<?php echo base_url('/hasil_nuklir/view_insert_hasil_nuklir/') ?>" class="nav-link">
               <i class="nav-icon fas fa-file"></i>

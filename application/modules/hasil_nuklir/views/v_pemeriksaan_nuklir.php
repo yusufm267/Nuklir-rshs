@@ -21,6 +21,7 @@
 					<th class="bg-default">KADAR HASIL</th>
 					<th class="bg-default">JENIS RF</th>
 					<th class="bg-default">DOSIS RF</th>
+					<th class="bg-default">ACTION</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -43,6 +44,10 @@
 					<td class=""><?=$data->KADAR_HASIL?></td>
 					<td class=""><?=$data->JENIS_RF?></td>
 					<td class=""><?=$data->DOSIS_RF?></td>
+					<td class="">
+						<?php echo anchor('hasil_nuklir/view_update/' .$data->NO_MEDREC, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|
+		        &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/cetakHasilPemeriksaan/' .$data->NO_MEDREC, "<i class='nav-icon fas fa-file'></i>"); ?>
+					</td>
 				</tr>
 				<?php } ?>
 			</tbody>

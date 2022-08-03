@@ -23,13 +23,13 @@
 			<div class="col-lg-3 col-md-3">
 				<div class="form-group">
 					<label>NAMA PASIEN</label>
-					<input type="text" class="form-control" name="nama" placeholder="NAMA PASIEN" id="nama">
+					<input type="text" class="form-control" name="nama" placeholder="NAMA PASIEN" id="nama" readonly>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<div class="form-group">
 					<label>UMUR PASIEN</label>
-					<input type="text" class="form-control" name="umur" placeholder="UMUR PASIEN" id="umur">
+					<input type="text" class="form-control" name="umur" placeholder="UMUR PASIEN" id="umur" readonly>
 				</div>
 			</div>
 			<div class="col-lg-3 col-md-3">
@@ -48,7 +48,7 @@
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>DOKTER PERIKSA</label>
-				<input type="text" class="form-control" value="" name="dokter_periksa" placeholder="DOKTER PERIKSA" readonly>
+				<input type="text" class="form-control" value="" name="dokter_periksa" placeholder="DOKTER PERIKSA">
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>PENGETIK HASIL</label>

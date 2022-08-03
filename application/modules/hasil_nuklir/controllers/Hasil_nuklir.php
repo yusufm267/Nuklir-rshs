@@ -226,4 +226,18 @@ class Hasil_nuklir extends MX_Controller
 		$this->session->set_flashdata('message',$data);
 		redirect('hasil_nuklir','refresh'); 
 	}
+
+	public function cetakHasilPemeriksaan($NO_MEDREC)
+	{
+		$data['data_hasil_pemeriksaan']=$this->M_hasil_nuklir->getDetailHasilPemeriksaan($NO_MEDREC);
+
+		$this->load->view('laporan_hasil_pemeriksaan',$data);
+	}
+
+	public function cetakJenisHasilPemeriksaan($ID_JENIS)
+	{
+		$data['data_jenis_hasil_nuklir']=$this->M_hasil_nuklir->getJenisHasilPemeriksaan($ID_JENIS);
+
+		$this->load->view('laporan_jenis_hasil', $data);
+	}
 }
