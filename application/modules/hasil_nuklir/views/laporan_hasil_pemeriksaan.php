@@ -64,7 +64,6 @@ $title = <<<EOD
 EOD;
 $pdf->writeHTMLCell(0,0,'','',$title,0,1,0,true,'C',true);
 
-
 $left_column = 
 '
 <p><br>

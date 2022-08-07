@@ -166,6 +166,28 @@ class Hasil_nuklir extends MX_Controller
 		echo json_encode($data);
 	}
 
+	public function getDokterPeriksaAutoComplete()
+	{
+		$keyword=$this->input->post('keyword');
+		$data=$this->M_hasil_nuklir->getDokterPeriksaAutoComplete($keyword);
+		array_push($data,(object)array(
+			"ID_DOKTER"=>'ID DOKTER',
+			"NM_DOKTER"=>'NAMA DOKTER'
+		));
+		echo json_encode($data);
+	}
+
+	public function getNamaHasilAutoComplete()
+	{
+		$keyword=$this->input->post('keyword');
+		$data=$this->M_hasil_nuklir->getNamaHasilComplete($keyword);
+		array_push($data,(object)array(
+			"ID_JENIS"=>'ID JENIS',
+			"NM_HASIL"=>'NAMA HASIL'
+		));
+		echo json_encode($data);
+	}
+
 	public function getHasilPemeriksaan()
 	{
 		$medrec = $this->input->get('medrec');
@@ -230,6 +252,8 @@ class Hasil_nuklir extends MX_Controller
 	public function cetakHasilPemeriksaan($NO_MEDREC)
 	{
 		$data['data_hasil_pemeriksaan']=$this->M_hasil_nuklir->getDetailHasilPemeriksaan($NO_MEDREC);
+		// var_dump($data);
+		// exit;
 
 		$this->load->view('laporan_hasil_pemeriksaan',$data);
 	}

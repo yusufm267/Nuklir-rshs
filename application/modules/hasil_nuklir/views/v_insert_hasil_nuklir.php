@@ -48,7 +48,8 @@
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>DOKTER PERIKSA</label>
-				<input type="text" class="form-control" value="" name="dokter_periksa" placeholder="DOKTER PERIKSA">
+				<input type="text" class="form-control" value="" name="dokter_periksa" placeholder="DOKTER PERIKSA" id="dokter_periksa" autocomplete="off">
+				<ul class="dropdown-menu txtDok" style="margin-top: -85px;margin-left:10px;margin-right:0px;padding-left:10px;padding-right:10px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownDokter"></ul>
 			</div>
 			<div class="col-lg-3 col-md-3">
 				<label>PENGETIK HASIL</label>
@@ -139,6 +140,7 @@ $("#medrec").keyup(function() {
 	});
 });
 
+
 $('ul.txtnik').on('click','li a',function(){
 	if ($(this).text()!='NOT FOUND')
 	{
@@ -157,6 +159,50 @@ $('ul.txtnik').on('click','li a',function(){
 
 	}
 	$('#DropdownMedrec').hide();
+});
+
+
+
+$("#dokter_periksa").keyup(function() {
+	var base_url='<?=base_url()?>';
+	// alert('test');abc
+	$.ajax({
+		type: "POST",
+		url: base_url+"Hasil_nuklir/getDokterPeriksaAutoComplete",
+		data: {
+			keyword: $("#dokter_periksa").val().trim()
+		},
+		dataType: "json",
+		success: function (data) {
+			if (data.length > 0) {
+				$('#DropdownDokter').empty();
+				$('#DropdownDokter').dropdown('toggle');
+				$('#DropdownDokter').show();
+			}
+			else if (data.length == 0) {
+
+			}
+
+			$.each(data, function(key,value){
+				if (data.length >= 0)
+					$('#DropdownDokter').append('<li role="displayCountries"><a role="menuitem" dropdownCountryli" class="dropdownlivalue" style="color:black;">' + value['ID_DOKTER'] +' - '+value['NM_DOKTER']+'</a></li>');
+			});
+		}
+	});
+});
+
+$('ul.txtDok').on('click','li a',function(){
+	if ($(this).text()!='NOT FOUND')
+	{
+		var res=$(this).text().split(' - ');
+		console.log(res);
+		dokter_periksa=typeof res[1]!='undefined'?res[1]:'';
+		$('#dokter_periksa').val(dokter_periksa);
+		var $td = $(this).closest('li').children('a');
+	}else{
+
+	}
+	$('#DropdownDokter').hide();
 });
 
 $('#tanggal_kunjungan').change(function(e) {
