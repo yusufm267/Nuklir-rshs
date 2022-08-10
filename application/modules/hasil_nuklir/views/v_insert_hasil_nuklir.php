@@ -205,6 +205,8 @@ $('ul.txtDok').on('click','li a',function(){
 	$('#DropdownDokter').hide();
 });
 
+
+
 $('#tanggal_kunjungan').change(function(e) {
 	let medrec = $('#medrec').val();
 	let nama = $('#nama').val();

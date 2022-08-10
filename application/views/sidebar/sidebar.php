@@ -60,9 +60,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="./index3.html" class="nav-link">
+                <a href="<?php echo base_url("/users/dataDokter") ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Dashboard v3</p>
+                  <p>Lihat Data Dokter</p>
                 </a>
               </li>
             </ul>
@@ -97,7 +97,15 @@
               <li class="nav-item">
                 <a href="<?php echo base_url("/hasil_nuklir/") ?>" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Lihat Data Jenis Hasil Nuklir</p>
+                  <p>Lihat Data Master Jenis Hasil Nuklir</p>
+                </a>
+              </li>
+            </ul>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?php echo base_url("/hasil_nuklir/jenis_rf") ?>" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Lihat Data Master Jenis Radiofarma</p>
                 </a>
               </li>
             </ul>

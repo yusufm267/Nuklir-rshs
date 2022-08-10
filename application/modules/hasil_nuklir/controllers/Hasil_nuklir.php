@@ -180,10 +180,11 @@ class Hasil_nuklir extends MX_Controller
 	public function getNamaHasilAutoComplete()
 	{
 		$keyword=$this->input->post('keyword');
-		$data=$this->M_hasil_nuklir->getNamaHasilComplete($keyword);
+		$data=$this->M_hasil_nuklir->search_hasil($keyword);
 		array_push($data,(object)array(
 			"ID_JENIS"=>'ID JENIS',
-			"NM_HASIL"=>'NAMA HASIL'
+			"NM_HASIL"=>'NAMA HASIL',
+			"KADAR_NORMAL" => "KADAR NORMAL"
 		));
 		echo json_encode($data);
 	}
@@ -193,19 +194,20 @@ class Hasil_nuklir extends MX_Controller
 		$medrec = $this->input->get('medrec');
 		$nama = $this->input->get('nama');
 		$tanggal = $this->input->get('tanggal');
+		$namaHasils = $this->M_hasil_nuklir->get_data();
 
 		$hasil = [];
 
 		if (strlen($medrec)==10) { // Rawat Jalan
 			$hasil = $this->M_hasil_nuklir->getHasilNuklirIRJ($tanggal, $medrec);
 			
-			$this->load->view('v_hasil_pemeriksaan',['hasil' => $hasil]);
+			$this->load->view('v_hasil_pemeriksaan',['hasil' => $hasil, 'namaHasils' => $namaHasils]);
 			return;
 
 		}else if (strlen($medrec)==8) { //Rawat Inap
 			$hasil = $this->M_hasil_nuklir->getHasilNuklirIRI($tanggal, $medrec);
 
-			$this->load->view('v_hasil_pemeriksaan', ['hasil' => $hasil]);
+			$this->load->view('v_hasil_pemeriksaan', ['hasil' => $hasil, 'namaHasils' => $namaHasils]);
 			return;
 		}
 	}
@@ -225,6 +227,44 @@ class Hasil_nuklir extends MX_Controller
 		// exit;
 
 		$this->load->view('template', $data);
+	}
+
+	public function jenis_rf()
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='DATA MASTER JENIS RADIOFARMA';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_jenis_rf';
+
+		$data['data_jenis_rf'] = $this->M_hasil_nuklir->getDataJenisRF();
+
+		$this->load->view('template',$data);
+	}
+
+	public function view_update_jenis_rf($JENIS_RF)
+	{
+		$data['title']='Kelola Nuklir';
+		$data['subtitle']='DATA DETAIL JENIS RADIOFARMA';
+		$data['header']='header/header';
+		$data['navbar']='navbar/navbar';
+		$data['sidebar']='sidebar/sidebar';
+		$data['footer']='footer/footer';
+		$data['body']='v_update_jenis_rf';
+
+		$data['data_jenis_rf'] = $this->M_hasil_nuklir->getDataDetailJenisRF($JENIS_RF);
+
+		$this->load->view('template',$data);
+	}
+
+	public function delete_jenis_rf($JENIS_RF)
+	{
+		$delete = $this->M_hasil_nuklir->deleteJenisRF($JENIS_RF);
+		$data = $delete ? ['message'=>'Data Berhasil Dihapus','type'=>'success','head'=>'Success'] : ['message'=>'Data Gagal Dihapus','type'=>'error','head'=>'Failed'];
+		$this->session->set_flashdata('message',$data);
+		redirect('hasil_nuklir/jenis_rf','refresh');
 	}
 
 	public function insert_pemeriksaan_nuklir()

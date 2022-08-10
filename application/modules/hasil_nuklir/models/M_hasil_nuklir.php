@@ -17,6 +17,13 @@ class M_hasil_nuklir extends CI_Model
 		return $this->db->from('NKL_JENIS_HASIL_NUK')->get()->result();
 	}
 
+	public function search_hasil($keyword)
+	{
+		$this->db->select('ID_JENIS, NM_HASIL, KADAR_NORMAL');
+		$this->db->like("UPPER(\"NM_HASIL\")",strtoupper($keyword));
+		return $this->db->from('NKL_JENIS_HASIL_NUK')->get()->result();
+	}
+
 	// public function get_seq_hasil_nuk()
 	// {
 	// 	$query="select seq_jns_hasil_nuk.nextval id from dual";
@@ -292,5 +299,27 @@ class M_hasil_nuklir extends CI_Model
     	";
 
     	return $this->db->query($query)->row();
+    }
+
+    public function getDataJenisRF()
+    {
+    	return $this->db->from('NKL_JENIS_RF_NUK')->get()->result();
+    }
+
+    public function getDataDetailJenisRF($JENIS_RF)
+    {
+
+    	$query="
+    	select * from NKL_JENIS_RF_NUK where JENIS_RF= '".$JENIS_RF."' 
+    	";
+
+    	return $this->db->query($query)->row();
+    }
+
+    public function deleteJenisRF($JENIS_RF)
+    {
+    	$this->db->where('JENIS_RF', $JENIS_RF);
+    	$this->db->delete('NKL_JENIS_RF_NUK');
+    	return $this->db->affected_rows();
     }
 }

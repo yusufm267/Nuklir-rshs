@@ -19,12 +19,11 @@
 	<table class="table table-bordered table-striped" id="datatable1" style="width:100%" >
         <thead>
         <tr>
-      <th class="bg-danger">NO</th>
-			<th class="bg-danger">NAMA HASIL</th>
-			<th class="bg-danger">KADAR NORMAL</th>
-			<th class="bg-danger">SATUAN</th>
-      <th class="bg-danger">ID JENIS PEMERIKSAAN</th>
-      <th class="bg-danger">ACTION</th>
+      <th class="bg-default">NO</th>
+			<th class="bg-default">NAMA HASIL</th>
+			<th class="bg-default">KADAR NORMAL</th>
+			<th class="bg-default">SATUAN</th>
+      <th class="bg-default">ACTION</th>
 		</tr>
          </thead>
          <tbody> 
@@ -37,8 +36,6 @@
 			<td class=""><?=$data->NM_HASIL?></td>
 			<td class=""><?=$data->KADAR_NORMAL?></td>
 			<td class=""><?=$data->SATUAN?></td>
-      <td class=""><?=$data->ID_JNS_PEMERIKSAAN?></td>
-      
       <td class="">
         <?php echo anchor('hasil_nuklir/view_update/' .$data->ID_JENIS, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|
         &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/delete/' .$data->ID_JENIS, "<i class='nav-icon fas fa-trash'></i>"); ?> &nbsp;&nbsp;|
