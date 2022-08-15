@@ -103,7 +103,7 @@ class Hasil_nuklir extends MX_Controller
 		$data['body']='v_update';
 
 		$data['data_hasil_jenis_nuklir'] = $this->M_hasil_nuklir->get_data_update($ID_JENIS);
-
+		
 		$this->load->view('template',$data);
 	}
 
@@ -185,6 +185,16 @@ class Hasil_nuklir extends MX_Controller
 			"ID_JENIS"=>'ID JENIS',
 			"NM_HASIL"=>'NAMA HASIL',
 			"KADAR_NORMAL" => "KADAR NORMAL"
+		));
+		echo json_encode($data);
+	}
+
+	public function getJenisRfAutoComplete()
+	{
+		$keyword=$this->input->post('keyword');
+		$data=$this->M_hasil_nuklir->getJenisRfAutoComplete($keyword);
+		array_push($data,(object)array(
+			"JENIS_RF"=>'JENIS RF'
 		));
 		echo json_encode($data);
 	}

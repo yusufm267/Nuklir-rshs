@@ -17,7 +17,7 @@
 				<td><?= $hs->KELOMPOK_NUK?></td>
 				<td>
 					<input type="text" name="nm_hasil" class="form-control searchHasil namaHasil-<?= $hs->ID_JNS_LAYANAN ?>"  value="<?= $hs->NM_HASIL ?>" data-id="<?= $hs->ID_JNS_LAYANAN ?>">
-					<ul class="dropdown-menu txtHasil" style="" role="menu" aria-labelledby="dropdownMenu" id="DropdownHasil"></ul>
+					<ul class="dropdown-menu txtHasil" style="margin-top:500px;margin-left:345px;margin-right:0px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownHasil"></ul>
 				</td>
 				<td>
 					<input type="text" name="kadar_hasil" class="form-control kadarHasil-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->KADAR_HASIL ?>">
@@ -26,7 +26,8 @@
 					<input type="text" name="kadar_normal" class="form-control kadarNormal-<?= $hs->ID_JNS_LAYANAN ?>" value="" readonly>
 				</td>
 				<td>
-					<input type="text" name="jenis_rf" class="form-control " value="<?= $hs->JENIS_RF ?>">	
+					<input type="text" name="jenis_rf" class="form-control searchJenis namaJenis-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->JENIS_RF ?>" data-wawat="value" data-id="<?= $hs->ID_JNS_LAYANAN?>">
+					<ul class="dropdown-menu txtJenis" style="margin-top:500px;margin-left:1000px;margin-right:-770px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownJenis"></ul>	
 				</td>
 				<td>
 					<input type="text" name="dosis_rf" class="form-control" value="<?= $hs->DOSIS_RF ?>">
@@ -42,6 +43,7 @@
 	$(".searchHasil").keyup(function() {
 	var base_url='<?=base_url()?>';
 	let idnya = $(this).data("id");
+	$(this).data("wawat");
 	// alert('test');abc
 	$.ajax({
 		type: "POST",
@@ -65,11 +67,9 @@
 				if (data.length >= 0)
 					$('#DropdownHasil').append('<li role="displayCountries"><a  onclick="getValue(\''+idnya+'\', \''+value['NM_HASIL']+'\', \''+value['KADAR_NORMAL']+'\')" role="menuitem" dropdownCountryli" class="dropdownlivalue" style="color:black;" data-nama="'+value['NM_HASIL']+'" data-kadar="'+value['KADAR_NORMAL']+'"  data-id="'+idnya+'"  >' + value['ID_JENIS'] +' - '+value['NM_HASIL']+' - '+value['KADAR_NORMAL']+'</a></li>');
 			});
-			
 		}
 	});
 });
-
 
 function getValue(id, nama, kadar) {
 	$('.namaHasil-'+id).val(nama);
@@ -77,4 +77,41 @@ function getValue(id, nama, kadar) {
 
 	$('#DropdownHasil').hide();
 }
+
+	$(".searchJenis").keyup(function() {
+	var base_url='<?=base_url()?>';
+	let jenisnya = $(this).data("id");
+	// alert('test');abc
+	$.ajax({
+		type: "POST",
+		url: base_url+"Hasil_nuklir/getJenisRfAutoComplete",
+		data: {
+			keyword: $(this).val().trim()
+		},
+		dataType: "json",
+		success: function (data) {
+
+			if (data.length > 0) {
+				$('#DropdownJenis').empty();
+				$('#DropdownJenis').dropdown('toggle');
+				$('#DropdownJenis').show();
+			}
+			else if (data.length == 0) {
+
+			}
+
+			$.each(data, function(key,value){
+				if (data.length >= 0)
+					$('#DropdownJenis').append('<li role="displayCountries"><a onclick="getValueJenis(\''+jenisnya+'\', \''+value['JENIS_RF']+'\')" role="menuitem" dropdownCountryli" class="dropdownlivalue" style="color:black;" data-jenis="'+value['JENIS_RF']+'" data-id="'+jenisnya+'"  >' + value['JENIS_RF'] +' </a></li>');
+			});
+		}
+	});
+});
+
+function getValueJenis(id,jenis) {
+	$('.namaJenis-'+id).val(jenis);
+
+	$('#DropdownJenis').hide();
+}
+	
 </script>

@@ -133,6 +133,21 @@ class M_hasil_nuklir extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
+	public function getJenisRfAutoComplete($keyword)
+	{
+		$this->db->distinct();
+		$this->db->select('JENIS_RF');
+		$this->db->from('NKL_JENIS_RF_NUK');
+		if ($keyword!='')
+		{
+			$this->db->like("UPPER(\"JENIS_RF\")", strtoupper($keyword));	
+		} else {
+			$this->db->where("JENIS_RF", 'xxxxx');
+		}
+		$this->db->limit(5,0);
+		return $this->db->get()->result_array();
+	}
+
 	public function cek_medrec($medrec)
 	{
 		$this->db->where('NO_MEDREC',$medrec);
@@ -142,19 +157,11 @@ class M_hasil_nuklir extends CI_Model
 	public function getHasilNuklirIRI($tanggal, $medrec)
     {
     	$tanggal = date('d-M-y', strtotime($tanggal));
-        // $query = $this->db->query("CALL hasil_nuk_iri('".$tanggal."', '".$medrec."')");
-
-   //      $pelayananIri = $this->db->query("
-   //      	select 
-			// NO_IPD, ID_JNS_LAYANAN, TGL_LAYANAN from NKL_PELAYANAN_IRI
-			// WHERE TGL_LAYANAN = '".$tanggal."' and NO_IPD = '".$medrec."' and ID_JNS_LAYANAN like 'LNIV%'
-   //      ")->result();
 		
     	$this->db->from('NKL_PELAYANAN_IRI');
     	$this->db->where('TGL_LAYANAN', $tanggal);
     	$this->db->where('NO_IPD', $medrec);
     	$pelayananIri = $this->db->get()->result();
-
         
      	if (count($pelayananIri)) {
      		foreach ($pelayananIri as $iri) {

@@ -1,9 +1,22 @@
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title"><?=$subtitle?></h3>
+		<!-- <div class="float-sm-right">
+			<select class="form-control">
+				<option value=""> </option>
+				<option value="">Test1</option>
+			</select>
+		</div> -->
 		<div class="float-sm-right">
 			<select class="form-control">
-				<option value="">Test1</option>
+				<option value="">-- TAHUN --</option>
+				<option value="">2016</option>
+				<option value="">2017</option>
+				<option value="">2018</option>
+				<option value="">2019</option>
+				<option value="">2020</option>
+				<option value="">2021</option>
+				<option value="">2022</option>
 			</select>
 		</div>
 	</div>

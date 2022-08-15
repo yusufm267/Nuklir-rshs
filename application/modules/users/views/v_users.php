@@ -9,8 +9,8 @@
   <div class="card-header">
       <h3 class="card-title"><?=$subtitle?></h3>
       <div class="float-sm-right">
-          <!-- <button type="button" id="btn_call_search" class="btn btn-success btn-sm"><i class="fas fa-search"></i> Pencarian</button> -->
-          <a href="<?php echo base_url(). 'users/view_insert'?>" type="button" id="btn_to_action" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <b>Tambah Data</b></a>
+         <!--  <a href="<?php echo base_url(). 'users/view_insert'?>" type="button" id="btn_to_action" class="btn btn-primary btn-sm"><i class="fas fa-plus"></i> <b>Tambah Data</b></a> -->
+          <a href="" type="button" id="btn_to_action" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#userModal"><i class="fas fa-plus"></i> <b>Tambah Data</b></a>
       </div>
   </div>
   <!-- /.card-header -->
@@ -82,6 +82,88 @@
   </div>
   <!-- /.card-body -->
 </div>
+
+
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Input Data User</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="post" action="<?php echo base_url("users/insert_user") ?>">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label for="inputError">NIP</label>
+                          <input type="text" class="form-control <?=form_error('NIP') ? 'is-invalid' : null ?>" name="NIP" placeholder="Masukan NIP" value="<?=set_value('NIP'); ?>">
+                          <?=form_error('NIP'); ?>
+                      </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                          <label for="exampleInputEmail1">ALIAS</label>
+                          <input type="text" class="form-control <?=form_error('ALIAS') ? 'is-invalid' : null ?>" name="ALIAS" placeholder="Masukan ALIAS" value="<?=set_value('ALIAS'); ?>">
+                          <?=form_error('ALIAS'); ?>
+                      </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">AKSES</label>
+                        <select class="form-control select"  name="AKSES">
+                            <option value="">-- SELECT AKSES --</option> 
+                            <option value=1>ADMIN</option>
+                            <option value=2>STAFF</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">AKTIF</label>           
+                        <select class="form-control select" name="AKTIF">
+                            <option value="">-- SELECT AKTIF --</option>
+                            <option value=1>AKTIF</option>
+                            <option value=0>TIDAK AKTIF</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">STATUS</label>
+                        <input type="text" class="form-control" name="STATUS" placeholder="Contoh : Dokter">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">STAF</label>
+                        <select class="form-control select" name="STAF">
+                            <option value="">-- SELECT STAF --</option>
+                            <option value="Y">YA</option>
+                            <option value="N">TIDAK</option>    
+                        </select>
+                    </div>
+                </div>
+            </div>
+    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Insert Data</button>
+        <button type="reset" class="btn btn-default">Reset</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 
 <script>
   $(function () {
