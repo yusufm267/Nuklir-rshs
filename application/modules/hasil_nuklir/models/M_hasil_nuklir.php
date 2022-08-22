@@ -161,6 +161,7 @@ class M_hasil_nuklir extends CI_Model
     	$this->db->from('NKL_PELAYANAN_IRI');
     	$this->db->where('TGL_LAYANAN', $tanggal);
     	$this->db->where('NO_IPD', $medrec);
+    	$this->db->like('ID_JNS_LAYANAN','LNIV','after');
     	$pelayananIri = $this->db->get()->result();
         
      	if (count($pelayananIri)) {
@@ -184,7 +185,7 @@ class M_hasil_nuklir extends CI_Model
 		// $query="select * from NKL_PEMERIKSAAN_NUK WHERE TGL_KUNJUNGAN = '".$tanggal."' AND NO_MEDREC = '".$medrec."' ";
 		// return $this->db->query($query)->result();
 
-     	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC');
+     	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN');
 		$this->db->from('NKL_JENIS_PELAYANAN a');
 		$this->db->join('NKL_PEMERIKSAAN_NUK b','a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN','left');
     	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
@@ -235,7 +236,7 @@ class M_hasil_nuklir extends CI_Model
     		}
     	}
 
-    	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC');
+    	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN');
     	$this->db->from('NKL_JENIS_PELAYANAN a');
     	$this->db->join('NKL_PEMERIKSAAN_NUK b', 'a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN', 'left');
     	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
@@ -286,6 +287,7 @@ class M_hasil_nuklir extends CI_Model
     	$this->db->join('NKL_PASIEN_IRJ b', 'a.NO_MEDREC = b.NO_MEDREC', 'left');
     	$this->db->join('NKL_PASIEN_IRI c', 'a.NO_MEDREC = c.NO_IPD', 'left');
     	$this->db->like('TGL_KUNJUNGAN','-22','before');
+    	$this->db->order_by('TGL_KUNJUNGAN', 'desc');
     	$this->db->limit(1500);
     	return $this->db->get()->result();
     }
@@ -323,10 +325,26 @@ class M_hasil_nuklir extends CI_Model
     	return $this->db->query($query)->row();
     }
 
+    public function insertJenisRF($tabel,$data)
+    {
+    	$this->db->insert($tabel, $data);
+    	return $this->db->affected_rows();
+    }
+
     public function deleteJenisRF($JENIS_RF)
     {
     	$this->db->where('JENIS_RF', $JENIS_RF);
     	$this->db->delete('NKL_JENIS_RF_NUK');
     	return $this->db->affected_rows();
     }
+
+    public function updatePemeriksaanNuk($idJenisPelayanan, $noMedrec, $tglKunjungan, $dataUpdate)
+    {
+    	$this->db->where('ID_JNS_LAYANAN',$idJenisPelayanan);
+    	$this->db->where('TGL_KUNJUNGAN',$tglKunjungan);
+    	$this->db->where('NO_MEDREC',$noMedrec);
+		$this->db->update('NKL_PEMERIKSAAN_NUK',$dataUpdate);
+		return $this->db->affected_rows();
+    }
+
 }

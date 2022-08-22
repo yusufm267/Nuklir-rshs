@@ -38,10 +38,13 @@
 			<td class=""><?=$data->KADAR_NORMAL?></td>
 			<td class=""><?=$data->SATUAN?></td>
       <td class="">
-        <?php echo anchor('hasil_nuklir/view_update/' .$data->ID_JENIS, "<i class='nav-icon fas fa-edit' data-toggle='modal' data-target='#exampleModal'></i>"); ?> &nbsp;&nbsp;|
+        <!-- <?php echo anchor('hasil_nuklir/view_update/' .$data->ID_JENIS, "<i class='nav-icon fas fa-edit' data-toggle='modal' data-target='#exampleModal'></i>"); ?> &nbsp;&nbsp;|
         &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/delete/' .$data->ID_JENIS, "<i class='nav-icon fas fa-trash'></i>"); ?> &nbsp;&nbsp;|
-        &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/cetakJenisHasilPemeriksaan/' .$data->ID_JENIS, "<i class='nav-icon fas fa-file'></i>"); ?> &nbsp;&nbsp;|
-        &nbsp;&nbsp; <a class="btn btn-info btn-xs" data-toggle="modal" data-target="#detailModal" data-nama="<?=$data->NM_HASIL?>" data-kadar="<?=$data->KADAR_NORMAL?>" data-satuan="<?=$data->SATUAN?>"><i class="fas fa-eye"></i></a>
+        &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/cetakJenisHasilPemeriksaan/' .$data->ID_JENIS, "<i class='nav-icon fas fa-file'></i>"); ?> &nbsp;&nbsp;| -->
+        <a class="btn btn-info btn-xs" id="detail" data-toggle="modal" data-target="#detailModal" data-nama="<?=$data->NM_HASIL?>" data-kadar="<?=$data->KADAR_NORMAL?>" data-satuan="<?=$data->SATUAN?>"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;|
+        &nbsp;&nbsp; <a class="btn btn-danger btn-xs" href="<?=base_url('hasil_nuklir/delete/' .$data->ID_JENIS) ?>"><i class="fas fa-trash"></i></a> &nbsp;&nbsp;|
+        &nbsp;&nbsp; <a class="btn btn-default btn-xs" href="<?=base_url('hasil_nuklir/cetakJenisHasilPemeriksaan/' .$data->ID_JENIS) ?>" onClick="clickMe(this)" id="clicks"><i class="fas fa-print"></i></a>
+        <span class="show"></span>
       </td>
 		</tr>
            	<?php
@@ -120,7 +123,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form method="post" action="<?php echo base_url("hasil_nuklir/update/" . $data_hasil_jenis_nuklir->ID_JENIS) ?>">
+        <form method="post" action="<?php echo base_url("hasil_nuklir/update/" . $data->ID_JENIS) ?>">
           <div class="card-body">
             <div class="row">
               <div class="col-lg-6 col-md-6">
@@ -153,7 +156,7 @@
           </div>
       </div>
       <div class="modal-footer">
-        <button type="submit" class="btn btn-primary">Insert Data</button>
+        <button type="submit" class="btn btn-primary">Update Data</button>
         <button type="reset" class="btn btn-default">Reset</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
       </div>
@@ -182,7 +185,7 @@
 
 
   $(document).ready(function(){
-    $(document).on('click','#select',function(){
+    $(document).on('click','#detail',function(){
       var nama = $(this).data('nama');
       var kadar = $(this).data('kadar');
       var satuan = $(this).data('satuan');
@@ -192,4 +195,14 @@
       $('#editModal').modal('hide');
     })
   })
+
+  var counter=0;
+function count()
+{
+ $(".show").html(counter);
+}
+ $('.btn').on('click',function(){
+      counter++
+      count();
+ })
 </script>

@@ -1,3 +1,5 @@
+<form method="post" action="<?= base_url('Hasil_nuklir/simpanHasilPemeriksaan') ?>">
+
 <table class="table table-bordered table-striped text-center">
 	<thead>
 		<tr>
@@ -12,32 +14,43 @@
 	<tbody>
 		<?php foreach($hasil as $hs) { ?>
 			<tr>
-				<td><?= $hs->ID_JNS_LAYANAN ?></td>
+				<td>
+					<?= $hs->ID_JNS_LAYANAN ?>
+					<input type="hidden" name="id_jenis_layanan[]" value="<?= $hs->ID_JNS_LAYANAN ?>">
+					<input type="hidden" name="no_medrec[]" value="<?= $hs->NO_MEDREC ?>">
+					<input type="hidden" name="tgl_kunjungan[]" value="<?= $hs->TGL_KUNJUNGAN ?>">
+					
+
+				</td>
 				<td><?= $hs->NM_LAYANAN?></td>
 				<td><?= $hs->KELOMPOK_NUK?></td>
 				<td>
-					<input type="text" name="nm_hasil" class="form-control searchHasil namaHasil-<?= $hs->ID_JNS_LAYANAN ?>"  value="<?= $hs->NM_HASIL ?>" data-id="<?= $hs->ID_JNS_LAYANAN ?>">
+					<input type="text" name="nm_hasil[]" class="form-control searchHasil namaHasil-<?= $hs->ID_JNS_LAYANAN ?>"  value="<?= $hs->NM_HASIL ?>" data-id="<?= $hs->ID_JNS_LAYANAN ?>">
 					<ul class="dropdown-menu txtHasil" style="margin-top:500px;margin-left:345px;margin-right:0px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownHasil"></ul>
 				</td>
 				<td>
-					<input type="text" name="kadar_hasil" class="form-control kadarHasil-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->KADAR_HASIL ?>">
+					<input type="text" name="kadar_hasil[]" class="form-control kadarHasil-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->KADAR_HASIL ?>">
 				</td>
 				<td>
-					<input type="text" name="kadar_normal" class="form-control kadarNormal-<?= $hs->ID_JNS_LAYANAN ?>" value="" readonly>
+					<input type="text" name="kadar_normal[]" class="form-control kadarNormal-<?= $hs->ID_JNS_LAYANAN ?>" value="" readonly>
 				</td>
 				<td>
-					<input type="text" name="jenis_rf" class="form-control searchJenis namaJenis-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->JENIS_RF ?>" data-wawat="value" data-id="<?= $hs->ID_JNS_LAYANAN?>">
+					<input type="text" name="jenis_rf[]" class="form-control searchJenis namaJenis-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->JENIS_RF ?>" data-wawat="value" data-id="<?= $hs->ID_JNS_LAYANAN?>">
 					<ul class="dropdown-menu txtJenis" style="margin-top:500px;margin-left:1000px;margin-right:-770px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownJenis"></ul>	
 				</td>
 				<td>
-					<input type="text" name="dosis_rf" class="form-control" value="<?= $hs->DOSIS_RF ?>">
+					<input type="text" name="dosis_rf[]" class="form-control" value="<?= $hs->DOSIS_RF ?>">
 				</td>
 			</tr>
+		
 
 		<?php } ?>
 		
+		
 	</tbody>
 </table>
+<button class="btn btn-primary" type="submit">Insert</button>
+</form>
 
 <script type="text/javascript">
 	$(".searchHasil").keyup(function() {

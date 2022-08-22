@@ -1,3 +1,12 @@
+<?php
+  if ($this->session->userdata('message'))
+  {
+    echo "<script>showSwal('".($this->session->userdata('message')['type'])."','".($this->session->userdata('message')['message'])."','".($this->session->userdata('message')['head'])."');</script>";
+  }
+?>
+
+
+
 <div class="card card-outline card-primary">
 	<div class="card-header">
 		<h3 class="card-title"><?=$subtitle?></h3>
@@ -99,8 +108,8 @@
 		<button type="reset" class="btn btn-default">Reset</button>
 	</div>
 </div> -->
-</form>
 
+</form>
 
 <div class="card card-outline card-primary">
 	<div class="card-header">
