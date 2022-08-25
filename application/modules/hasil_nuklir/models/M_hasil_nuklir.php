@@ -150,8 +150,14 @@ class M_hasil_nuklir extends CI_Model
 
 	public function cek_medrec($medrec)
 	{
-		$this->db->where('NO_MEDREC',$medrec);
-		return $this->db->get('NKL_PASIEN_IRJ')->row();
+		if (strlen($medrec)==10) {
+			$this->db->where('NO_MEDREC',$medrec);
+			return $this->db->get('NKL_PASIEN_IRJ')->row();
+		} else {
+			$this->db->select('NO_IPD AS NO_MEDREC, NAMARI AS NAMA,TGLLAHIRRI AS TGL_LAHIR, UMURRI AS UMUR, ALAMATRI AS ALAMAT');
+			$this->db->where('NO_IPD',$medrec);
+			return $this->db->get('NKL_PASIEN_IRI')->row();
+		}
 	}
 
 	public function getHasilNuklirIRI($tanggal, $medrec)
@@ -185,9 +191,10 @@ class M_hasil_nuklir extends CI_Model
 		// $query="select * from NKL_PEMERIKSAAN_NUK WHERE TGL_KUNJUNGAN = '".$tanggal."' AND NO_MEDREC = '".$medrec."' ";
 		// return $this->db->query($query)->result();
 
-     	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN');
+     	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN, c.KADAR_NORMAL, c.SATUAN');
 		$this->db->from('NKL_JENIS_PELAYANAN a');
 		$this->db->join('NKL_PEMERIKSAAN_NUK b','a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN','left');
+		$this->db->join('NKL_JENIS_HASIL_NUK c', 'c.NM_HASIL = b.NM_HASIL', 'left');
     	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
     	$this->db->where('b.NO_MEDREC', $medrec);
     	$this->db->like('b.ID_JNS_LAYANAN','LNIV', 'after');
@@ -236,9 +243,10 @@ class M_hasil_nuklir extends CI_Model
     		}
     	}
 
-    	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN');
+    	$this->db->select('a.ID_JNS_LAYANAN,a.NM_LAYANAN,a.KELOMPOK_NUK,b.NM_HASIL,b.KADAR_HASIL,b.JENIS_RF,b.DOSIS_RF,b.NO_MEDREC, b.TGL_KUNJUNGAN,c.KADAR_NORMAL,c.SATUAN');
     	$this->db->from('NKL_JENIS_PELAYANAN a');
     	$this->db->join('NKL_PEMERIKSAAN_NUK b', 'a.ID_JNS_LAYANAN = b.ID_JNS_LAYANAN', 'left');
+    	$this->db->join('NKL_JENIS_HASIL_NUK c', 'c.NM_HASIL = b.NM_HASIL', 'left');
     	$this->db->where('b.TGL_KUNJUNGAN', $tanggal);
     	$this->db->where('b.NO_MEDREC', $medrec);
     	$this->db->like('b.ID_JNS_LAYANAN','LNIV','after');

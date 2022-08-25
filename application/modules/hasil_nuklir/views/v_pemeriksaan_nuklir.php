@@ -59,7 +59,7 @@
 					<td class=""><?=$data->DOSIS_RF?></td>
 					<td class="">
 						<?php echo anchor('hasil_nuklir/view_update/' .$data->NO_MEDREC, "<i class='nav-icon fas fa-edit'></i>"); ?> &nbsp;&nbsp;|
-		        &nbsp;&nbsp; <?php echo anchor('hasil_nuklir/cetakHasilPemeriksaan/' .$data->NO_MEDREC, "<i class='nav-icon fas fa-print'></i>"); ?>
+		        &nbsp;&nbsp; <?php echo anchor('Hasil_nuklir/cetakHasilPemeriksaanNuk/' . $data->NO_MEDREC . '/' . $data->TGL_KUNJUNGAN, "<i class='nav-icon fas fa-print'></i>"); ?>
 					</td>
 				</tr>
 				<?php } ?>

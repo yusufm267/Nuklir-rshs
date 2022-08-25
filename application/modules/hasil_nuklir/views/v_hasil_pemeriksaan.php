@@ -25,17 +25,17 @@
 				<td><?= $hs->NM_LAYANAN?></td>
 				<td><?= $hs->KELOMPOK_NUK?></td>
 				<td>
-					<input type="text" name="nm_hasil[]" class="form-control searchHasil namaHasil-<?= $hs->ID_JNS_LAYANAN ?>"  value="<?= $hs->NM_HASIL ?>" data-id="<?= $hs->ID_JNS_LAYANAN ?>">
+					<input type="text" name="nm_hasil[]" class="form-control searchHasil namaHasil-<?= $hs->ID_JNS_LAYANAN ?>"  value="<?= $hs->NM_HASIL ?>" data-id="<?= $hs->ID_JNS_LAYANAN ?>" autocomplete="off">
 					<ul class="dropdown-menu txtHasil" style="margin-top:500px;margin-left:345px;margin-right:0px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownHasil"></ul>
 				</td>
 				<td>
-					<input type="text" name="kadar_hasil[]" class="form-control kadarHasil-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->KADAR_HASIL ?>">
+					<input type="text" name="kadar_hasil[]" class="form-control kadarHasil-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->KADAR_HASIL ?>" autocomplete="off">
 				</td>
 				<td>
 					<input type="text" name="kadar_normal[]" class="form-control kadarNormal-<?= $hs->ID_JNS_LAYANAN ?>" value="" readonly>
 				</td>
 				<td>
-					<input type="text" name="jenis_rf[]" class="form-control searchJenis namaJenis-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->JENIS_RF ?>" data-wawat="value" data-id="<?= $hs->ID_JNS_LAYANAN?>">
+					<input type="text" name="jenis_rf[]" class="form-control searchJenis namaJenis-<?= $hs->ID_JNS_LAYANAN ?>" value="<?= $hs->JENIS_RF ?>" data-wawat="value" data-id="<?= $hs->ID_JNS_LAYANAN?>" autocomplete="off">
 					<ul class="dropdown-menu txtJenis" style="margin-top:500px;margin-left:1000px;margin-right:-770px;padding-left:5px;padding-right:5px;" role="menu" aria-labelledby="dropdownMenu" id="DropdownJenis"></ul>	
 				</td>
 				<td>

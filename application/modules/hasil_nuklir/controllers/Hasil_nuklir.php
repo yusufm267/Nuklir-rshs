@@ -352,16 +352,20 @@ class Hasil_nuklir extends MX_Controller
 					
 				}
 			}
-			$this->session->set_flashdata('message',array('message'=>'Data Berhasil Disimpan','type'=>'success','head'=>'Success'));
-			return redirect('hasil_nuklir/view_insert_hasil_nuklir/');
+
+			return redirect('hasil_nuklir/cekHasilPemeriksaan/'. $noMedrec . '/' . $tglKunjungan);
 		} catch (Exception $e) {
 			//gagal
 			var_dump($e->getMessage());	
 		}
 	}
 
-	public function cekHasilPemeriksaan()
+	public function cekHasilPemeriksaan($noMedrec, $tglKunjungan)
 	{
+
+		$pasien = $this->M_hasil_nuklir->cek_medrec($noMedrec);
+		// var_dump($pasien);
+		// die;
 		$data['title'] = 'Kelola Nuklir';
 		$data['subtitle'] = 'Form Hasil Pemeriksaan Kedokteran Nuklir';
 		$data['header'] = 'header/header';
@@ -369,7 +373,25 @@ class Hasil_nuklir extends MX_Controller
 		$data['sidebar'] = 'sidebar/sidebar';
 		$data['footer'] = 'footer/footer';
 		$data['body'] = 'v_form_hasil_pemeriksaan';
+		$data['pasien'] = $pasien;
+		$data['hasil'] = (strlen($noMedrec)==10) ? $this->M_hasil_nuklir->getHasilNuklirIRJ($tglKunjungan, $noMedrec) : $this->M_hasil_nuklir->getHasilNuklirIRI($tglKunjungan, $noMedrec);
+		$data['tglKunjungan'] = $tglKunjungan;
 
 		$this->load->view('template', $data);
+	}
+
+	public function cetakHasilPemeriksaanNuk($NO_MEDREC, $tglKunjungan)
+	{
+		$data['data_hasil_pemeriksaan']=$this->M_hasil_nuklir->getDetailHasilPemeriksaan($NO_MEDREC);
+		$pasien = $this->M_hasil_nuklir->cek_medrec($NO_MEDREC);
+		$data['pasien'] = $pasien;
+		$data['hasil'] = (strlen($NO_MEDREC)==10) ? $this->M_hasil_nuklir->getHasilNuklirIRJ($tglKunjungan, $NO_MEDREC) : $this->M_hasil_nuklir->getHasilNuklirIRI($tglKunjungan, $NO_MEDREC);
+		$data['tglKunjungan'] = $tglKunjungan;
+		$data['ttd'] = $this->session->userdata('alias');
+
+		// var_dump($data);
+		// exit;
+
+		$this->load->view('v_laporan_hasil_pemeriksaan',$data);
 	}
 }

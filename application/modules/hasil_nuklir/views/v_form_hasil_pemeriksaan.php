@@ -25,14 +25,14 @@
                 <div class="col-sm-4 invoice-col">
                   <address>
                     <strong>Data Pasien</strong><br>
-                    Nama<br>
-                    Tanggal Lahir<br>
-                    Umur<br>
-                    Alamat
+                    Nama: <?= $pasien->NAMA ?><br>
+                    Tanggal Lahir : <?= $pasien->TGL_LAHIR ?><br>
+                    Umur: <?= $pasien->UMUR ?><br>
+                    Alamat : <?= $pasien->ALAMAT ?>
                   </address>
                 </div>
                 <!-- /.col -->
-                <div class="col-sm-4 invoice-col">
+                <!-- <div class="col-sm-4 invoice-col">
                   <address>
                     <strong>John Doe</strong><br>
                     795 Folsom Ave, Suite 600<br>
@@ -40,16 +40,20 @@
                     Phone: (555) 539-1037<br>
                     Email: john.doe@example.com
                   </address>
+                </div> -->
+                <!-- /.col -->
+                <div class="col-sm-4 invoice-col">
+                  <b>No Medrec #<?= $pasien->NO_MEDREC ?></b><br>
+                  <br>
+                  <!-- <b>Payment Due:</b> 2/22/2014<br>
+                  <b>Account:</b> 968-34567 -->
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <b>No Medrec #007612</b><br>
-                  <br>
-                  <b>Order ID:</b> 4F3S8J<br>
-                  <b>Payment Due:</b> 2/22/2014<br>
-                  <b>Account:</b> 968-34567
+                  <b>Tanggal Kunjungan:</b> <?= $tglKunjungan ?><br>
+                  <!-- <b>Payment Due:</b> 2/22/2014<br>
+                  <b>Account:</b> 968-34567 -->
                 </div>
-                <!-- /.col -->
               </div>
               <!-- /.row -->
 
@@ -62,18 +66,21 @@
                       <th>ID Jenis Layanan</th>
                       <th>Nama Hasil</th>
                       <th>Kadar Hasil</th>
+                      <th>Kadar Normal</th>
                       <th>Jenis RF</th>
                       <th>Dosis RF</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
+                    <?php foreach ($hasil as $hsl) { ?>
+                      <tr>
+                        <td><?= $hsl->ID_JNS_LAYANAN ?></td>
+                        <td><?= $hsl->NM_HASIL ?></td>
+                        <td><?= $hsl->KADAR_HASIL ?></td>
+                        <td><?= $hsl->KADAR_NORMAL ?></td>
+                        <td><?= $hsl->JENIS_RF ?></td>
+                        <td><?= $hsl->DOSIS_RF ?></td>
+                    <?php } ?>
                     </tbody>
                   </table>
                 </div>
@@ -83,7 +90,8 @@
 
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="invoice-print.html" rel="noopener" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?=base_url('hasil_nuklir/cetakHasilPemeriksaanNuk/' . $pasien->NO_MEDREC . '/' . $tglKunjungan) ?>" rel="noopener" target="_blank" class="btn btn-primary"><i class="fas fa-print"></i> Print</a>
+                  <a href="<?=base_url('hasil_nuklir/view_insert_hasil_nuklir/') ?>" class="btn btn-danger"><i class="fas fa-redo-alt"></i> Back</a>
                 </div>
               </div>
             </div>
