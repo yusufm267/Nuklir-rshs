@@ -160,6 +160,15 @@ class M_hasil_nuklir extends CI_Model
 		}
 	}
 
+	public function cek_dokterPeriksa($dokterPeriksa)
+	{
+		$query = "
+		select * from nkl_data_dokter where id_dokter = '".$dokterPeriksa."'
+		";
+
+		return $this->db->query($query)->row();
+	}
+
 	public function getHasilNuklirIRI($tanggal, $medrec)
     {
     	$tanggal = date('d-M-y', strtotime($tanggal));

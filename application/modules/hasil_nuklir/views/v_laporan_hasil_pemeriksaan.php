@@ -69,7 +69,7 @@ $left_column =
 <p><br>
 No Medrec   : '.$pasien->NO_MEDREC.'  <br>
 Nama        : '.$pasien->NAMA.'<br>
-Dr. Pengirim:  <br>
+Dr. Pengirim: '.$dokter_periksa.'<br>
 Alamat      : '.$pasien->ALAMAT.'<br><br><br>
 </p>
 ';
@@ -79,7 +79,7 @@ $right_column =
 <p style="text-align:right"><br>
 Tgl Pemeriksaan : '.$tglKunjungan.'  <br>
 Tgl Lahir       : '.$pasien->TGL_LAHIR.'<br>
-Umur            : '.$pasien->UMUR.'<br>
+Umur            : '.$pasien->UMUR.' Tahun<br>
 </p>
 ';
 

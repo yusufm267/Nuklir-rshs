@@ -353,7 +353,7 @@ class Hasil_nuklir extends MX_Controller
 				}
 			}
 
-			return redirect('hasil_nuklir/cekHasilPemeriksaan/'. $noMedrec . '/' . $tglKunjungan);
+			return redirect('hasil_nuklir/cekHasilPemeriksaan/'. $noMedrec . '/' . $tglKunjungan . '/' .$dokter);
 		} catch (Exception $e) {
 			//gagal
 			var_dump($e->getMessage());	
@@ -376,11 +376,13 @@ class Hasil_nuklir extends MX_Controller
 		$data['pasien'] = $pasien;
 		$data['hasil'] = (strlen($noMedrec)==10) ? $this->M_hasil_nuklir->getHasilNuklirIRJ($tglKunjungan, $noMedrec) : $this->M_hasil_nuklir->getHasilNuklirIRI($tglKunjungan, $noMedrec);
 		$data['tglKunjungan'] = $tglKunjungan;
-
+	
+		// var_dump($data);
+		// die;
 		$this->load->view('template', $data);
 	}
 
-	public function cetakHasilPemeriksaanNuk($NO_MEDREC, $tglKunjungan)
+	public function cetakHasilPemeriksaanNuk($NO_MEDREC, $tglKunjungan,$dokter)
 	{
 		$data['data_hasil_pemeriksaan']=$this->M_hasil_nuklir->getDetailHasilPemeriksaan($NO_MEDREC);
 		$pasien = $this->M_hasil_nuklir->cek_medrec($NO_MEDREC);
@@ -388,8 +390,8 @@ class Hasil_nuklir extends MX_Controller
 		$data['hasil'] = (strlen($NO_MEDREC)==10) ? $this->M_hasil_nuklir->getHasilNuklirIRJ($tglKunjungan, $NO_MEDREC) : $this->M_hasil_nuklir->getHasilNuklirIRI($tglKunjungan, $NO_MEDREC);
 		$data['tglKunjungan'] = $tglKunjungan;
 		$data['ttd'] = $this->session->userdata('alias');
-
-		// var_dump($data);
+		
+		// var_dump($pasien);
 		// exit;
 
 		$this->load->view('v_laporan_hasil_pemeriksaan',$data);

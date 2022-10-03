@@ -82,7 +82,7 @@
         </div>
         <!-- /.row -->
 
-        <div class="row">
+<!--         <div class="row">
           <div class="col-lg-6 col-md-6">   
             <div class="card card-danger">
               <div class="card-header">
@@ -100,10 +100,10 @@
               <div class="card-body">
                 <canvas id="pieChart" style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
               </div>
-              <!-- /.card-body -->
+
             </div>
           </div>
-        </div>
+        </div> -->
 
 <script type="text/javascript">
     var pieChartCanvas = $('#pieChart').get(0).getContext('2d')

@@ -27,7 +27,7 @@
                     <strong>Data Pasien</strong><br>
                     Nama: <?= $pasien->NAMA ?><br>
                     Tanggal Lahir : <?= $pasien->TGL_LAHIR ?><br>
-                    Umur: <?= $pasien->UMUR ?><br>
+                    Umur: <?= $pasien->UMUR ?> Tahun<br>
                     Alamat : <?= $pasien->ALAMAT ?>
                   </address>
                 </div>
